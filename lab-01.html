@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light"><title>实验一｜ROS 基础与 TurtleSim · 机器人与安全实验指导</title><link rel="stylesheet" href="assets/site.css"><script src="assets/site.js" defer></script></head>
+<body class="chapter-page"><a class="skip-link" href="#main-content">跳到正文</a>
+<header class="site-header"><a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">R</span><span>机器人与安全<span class="brand-sub">实验指导 · 网页版</span></span></a><div class="header-meta"><span>实验 01 / 11</span><a href="index.html">回到首页</a></div></header>
+<div class="chapter-layout"><aside class="chapter-aside"><details class="mobile-toc"><summary>打开实验目录</summary><nav aria-label="实验目录"><ol class="chapter-list"><li><a href="lab-00.html">00 <span>先准备环境</span></a></li>
+<li><a href="lab-01.html" aria-current="page">01 <span>ROS 基础与 TurtleSim</span></a></li>
+<li><a href="lab-02.html">02 <span>连接与遥控</span></a></li>
+<li><a href="lab-03.html">03 <span>SLAM 与导航</span></a></li>
+<li><a href="lab-04.html">04 <span>循线跟踪（选做）</span></a></li>
+<li><a href="lab-05.html">05 <span>ARP 实验</span></a></li>
+<li><a href="lab-06.html">06 <span>中间人实验</span></a></li>
+<li><a href="lab-07.html">07 <span>有限 SYN 探测</span></a></li>
+<li><a href="lab-08.html">08 <span>RSA 通信（选做）</span></a></li>
+<li><a href="lab-09.html">09 <span>视觉识别</span></a></li>
+<li><a href="lab-10.html">10 <span>SSH 口令安全（隔离）</span></a></li>
+<li><a href="lab-11.html">11 <span>多机编队（选做）</span></a></li></ol></nav></details><nav class="desktop-toc" aria-label="实验目录"><p class="aside-title">实验目录</p><ol class="chapter-list"><li><a href="lab-00.html">00 <span>先准备环境</span></a></li>
+<li><a href="lab-01.html" aria-current="page">01 <span>ROS 基础与 TurtleSim</span></a></li>
+<li><a href="lab-02.html">02 <span>连接与遥控</span></a></li>
+<li><a href="lab-03.html">03 <span>SLAM 与导航</span></a></li>
+<li><a href="lab-04.html">04 <span>循线跟踪（选做）</span></a></li>
+<li><a href="lab-05.html">05 <span>ARP 实验</span></a></li>
+<li><a href="lab-06.html">06 <span>中间人实验</span></a></li>
+<li><a href="lab-07.html">07 <span>有限 SYN 探测</span></a></li>
+<li><a href="lab-08.html">08 <span>RSA 通信（选做）</span></a></li>
+<li><a href="lab-09.html">09 <span>视觉识别</span></a></li>
+<li><a href="lab-10.html">10 <span>SSH 口令安全（隔离）</span></a></li>
+<li><a href="lab-11.html">11 <span>多机编队（选做）</span></a></li></ol></nav><nav class="page-toc" aria-label="本页内容"><p class="aside-title">本页内容</p><ol><li><a href="#goal">本章目标</a></li>
+<li><a href="#prepare">准备环境</a></li>
+<li><a href="#steps">操作步骤</a></li>
+<li><a href="#check">检查与留证</a></li>
+<li><a href="#troubleshoot">常见问题</a></li>
+<li><a href="#finish">收尾</a></li>
+<li><a href="#evidence">本章证据范围</a></li></ol></nav></aside>
+<main class="chapter-main" id="main-content"><div class="chapter-heading"><div><p class="eyebrow">实验 01 · 节点、话题、服务、消息与仿真编程</p><h1>实验一｜ROS 基础与 TurtleSim</h1></div><a class="print-link" href="#" data-print>打印本章</a></div><article class="prose"><section id="goal"><h2>本章目标</h2><p>在 ROS 1 Noetic TurtleSim 中认识节点、话题、服务和消息，调用生成、传送、删除服务，建立 catkin 功能包并观察定时画圆。全章只用本机仿真 master <code>127.0.0.1:11431</code>，不连接实体车。</p><p class="callout"><strong>依赖：</strong>使用交付的 Ubuntu-A 控制机与 ROS 1 Noetic Docker 环境；课程脚本和本章资料位于同级“实验文件”中，按该目录说明核对并运行软件检查。</p></section>
+<section id="prepare"><h2>准备：分清终端</h2><p>命令来自课程 <code>robot_labs/lab.sh</code> 和操作指南。入口命令 <code>bash lab.sh …</code> 在 Ubuntu 本地终端执行；ROS 查询在 <code>sim-shell</code> 容器中执行。每个新 Ubuntu 终端先进入 <code>~/robot_labs</code>。</p></section>
+<section id="steps"><h2>操作步骤：从启动到停机</h2><ol class="walkthrough">
+<li><h3>检查课程软件</h3><p><span class="role-tag">Ubuntu 本地终端 A</span>在 Ubuntu 终端进入套件目录并检查软件：</p><pre><code>cd ~/robot_labs
+bash lab.sh health</code></pre><p class="checkpoint"><strong>继续：</strong>显示 <code>SOFTWARE_CHECK_PASS</code>。这是离线检查，不是实车结果；失败时按套件指南处理。</p></li>
+<li><h3>启动 TurtleSim</h3><p><span class="role-tag">Ubuntu 本地终端 A</span>启动 TurtleSim 并保持该终端：</p><pre><code>cd ~/robot_labs
+bash lab.sh sim</code></pre><p class="checkpoint"><strong>继续：</strong>蓝色窗口出现默认 turtle1。入口已启动本机 master，不要另开 roscore。</p></li>
+<li><h3>打开仿真 shell</h3><p><span class="role-tag">Ubuntu 本地终端 B</span>另开终端进入仿真容器，确认 ROS 发行版和 master：</p><pre><code>cd ~/robot_labs
+bash lab.sh sim-shell
+echo "$ROS_DISTRO $ROS_MASTER_URI"</code></pre><p class="checkpoint"><strong>继续：</strong>显示 Noetic 和本机 11431；显示小车地址/11311 就退出重开。</p></li>
+<li><h3>查询节点</h3><p><span class="role-tag">仿真容器 shell</span>查询节点和连接信息：</p><pre><code>rosnode list
+rosnode info /turtlesim</code></pre><p>观察 /turtlesim、/rosout 及发布订阅信息。</p><p class="checkpoint"><strong>继续：</strong>两节点可见，turtlesim 提供 pose 与服务。</p></li>
+<li><h3>查询服务和话题</h3><p><span class="role-tag">仿真容器 shell</span>查询服务、话题和 pose 连接：</p><pre><code>rosservice list
+rostopic list
+rostopic info /turtle1/pose</code></pre><p class="checkpoint"><strong>继续：</strong>可见 /spawn、传送服务和 pose 话题。</p></li>
+<li><h3>查看 spawn 字段</h3><p><span class="role-tag">仿真容器 shell</span>查看 /spawn 服务类型、字段和参数：</p><pre><code>rosservice type /spawn
+rossrv show turtlesim/Spawn
+rosservice args /spawn</code></pre><p class="checkpoint"><strong>继续：</strong>确认字段 x、y、theta、name。</p></li>
+<li><h3>准备自己的名称</h3><p><span class="role-tag">仿真容器 shell</span>如果套件已设置 <code>STUDENT_ID</code>，可直接使用。否则在当前容器窗口设置一次自己的名称：把下面标出的示例值替换为只含字母、数字或下划线、且以字母开头的名称。</p><pre><code>export STUDENT_ID='<mark class="replace-value">s10001</mark>'
+echo "$STUDENT_ID"</code></pre><p>随后命令中的 <code>$STUDENT_ID</code> 是 shell 变量引用；运行时 shell 会自动展开为上一步设置的值，不需要再把每个 <code>$STUDENT_ID</code> 改写。</p><p class="checkpoint"><strong>继续：</strong>名称仅含字母、数字、下划线，不含空格或斜杠。</p></li>
+<li><h3>生成自己的乌龟</h3><p><span class="role-tag">仿真容器 shell</span>调用 /spawn 创建自己的乌龟：</p><pre><code>rosservice call /spawn "{x: 1.0, y: 1.0, theta: 0.0, name: '$STUDENT_ID'}"</code></pre><p class="checkpoint"><strong>继续：</strong>服务返回自己的名称，窗口出现第二只乌龟。名称已存在时确认后复用或只删除自己的对象。</p><figure class="lesson-figure"><img src="assets/guide/turtlesim-spawn.svg" alt="示意对照图。调用前只有 turtle1，调用后左下角多出示例 s10001。" loading="lazy"><figcaption>操作示意｜调用 /spawn 后应看到第二只。s10001 是示例名称，用自己的字母开头名称替换。</figcaption></figure></li>
+<li><h3>查看新对象 pose</h3><p><span class="role-tag">同一个仿真容器 shell</span>读取刚创建的海龟的位置、朝向和速度</p><pre><code>rostopic echo -n 1 "/$STUDENT_ID/pose"</code></pre><p><code>$STUDENT_ID</code> 会自动取前面设好的名称。刚换了终端时，先重做「准备自己的名称」那一步。</p><p class="checkpoint"><strong>继续：</strong>收到一条 pose；无输出时核对服务返回名。</p></li>
+<li><h3>绝对传送</h3><p><span class="role-tag">仿真容器 shell</span>把自己的乌龟传送到绝对坐标：</p><pre><code>rosservice call "/$STUDENT_ID/teleport_absolute" "{x: 2.0, y: 3.0, theta: 0.0}"</code></pre><p class="checkpoint"><strong>继续：</strong>对象到约 (2,3) 并朝右。此服务直接设置位姿。</p></li>
+<li><h3>相对传送并复查</h3><p><span class="role-tag">仿真容器 shell</span>相对移动后读取新 pose：</p><pre><code>rosservice call "/$STUDENT_ID/teleport_relative" "{linear: 2.0, angular: 1.57}"
+rostopic echo -n 1 "/$STUDENT_ID/pose"</code></pre><p class="checkpoint"><strong>继续：</strong>位置约为 x=2、y=5、theta=1.57，末位可有浮点差异。</p></li>
+<li><h3>查询速度和消息类型</h3><p><span class="role-tag">仿真容器 shell</span>查看速度话题连接、消息类型和字段：</p><pre><code>rostopic info "/$STUDENT_ID/cmd_vel"
+rostopic type "/$STUDENT_ID/cmd_vel"
+rosmsg show geometry_msgs/Twist
+rosmsg md5 geometry_msgs/Twist
+rosmsg show turtlesim/Pose</code></pre><p class="checkpoint"><strong>继续：</strong>区分 Twist 控制和 Pose 状态；MD5 是定义标识，不是数据文件校验。</p></li>
+<li><h3>删除自己的对象</h3><p><span class="role-tag">仿真容器 shell</span>删除自己的对象，再确认默认 turtle1 仍在：</p><pre><code>rosservice call /kill "{name: '$STUDENT_ID'}"
+rostopic list
+rosservice list</code></pre><p class="checkpoint"><strong>继续：</strong>自己的相关话题/服务消失，默认 turtle1 仍在。</p></li>
+<li><h3>在中央重建对象</h3><p><span class="role-tag">仿真容器 shell</span>重新在中央附近创建自己的对象：</p><pre><code>rosservice call /spawn "{x: 5.5, y: 5.5, theta: 0.0, name: '$STUDENT_ID'}"</code></pre><p class="checkpoint"><strong>继续：</strong>自己的乌龟位于中央附近，服务返回名称正确。</p></li>
+<li><h3>创建 catkin 工作空间和包</h3><p><span class="role-tag">仿真容器 shell</span>套件将目录挂载到 /lab，运行：</p><pre><code>mkdir -p /lab/student_ws/src
+cd /lab/student_ws/src
+catkin_init_workspace
+catkin_create_pkg learning_pkg rospy geometry_msgs turtlesim
+mkdir -p learning_pkg/scripts
+cp /lab/lab1_addon/circle_publisher.py learning_pkg/scripts/circle_node.py
+chmod +x learning_pkg/scripts/circle_node.py</code></pre><p class="checkpoint"><strong>继续：</strong>包文件与脚本创建成功；这些容器路径不可在 Ubuntu 宿主机执行。</p></li>
+<li><h3>编译并确认包位置</h3><p><span class="role-tag">仿真容器 shell</span>编译工作空间并确认包路径：</p><pre><code>cd /lab/student_ws
+catkin_make
+source devel/setup.bash
+rospack find learning_pkg</code></pre><p class="checkpoint"><strong>继续：</strong>编译成功，路径指向 /lab/student_ws/src/learning_pkg。</p></li>
+<li><h3>启动定时画圆</h3><p><span class="role-tag">仿真容器 shell</span>启动画圆节点。程序约 1 Hz 发布 v=4、w=-2，约 24 秒后归零退出；Ctrl+C 也会触发停止：</p><pre><code>export TURTLE_NAME="$STUDENT_ID"
+export DATA_DIR=/lab/data
+rosrun learning_pkg circle_node.py</code></pre><p class="checkpoint"><strong>继续：</strong>打印对象名和 CSV 路径，乌龟转圈。速度值是仿真值。</p><figure class="lesson-figure"><img src="assets/guide/lab-01-02.png" alt="TurtleSim 蓝色窗口中的海龟和轨迹" loading="lazy"><figcaption>教师任务书示例｜运行速度发布程序后，观察仿真窗口里的路径。</figcaption></figure></li>
+<li><h3>测量发布频率</h3><p><span class="role-tag">另一个仿真容器 shell</span>程序运行期间执行 <code>rostopic hz "/$STUDENT_ID/cmd_vel"</code>；收到多条样本并显示统计后按 Ctrl+C。</p><p class="checkpoint"><strong>继续：</strong>观察目标约 1 Hz，系统调度可能造成偏差。</p></li>
+<li><h3>用 rqt_plot 看位置</h3><p><span class="role-tag">Ubuntu 本地终端</span>打开 rqt_plot：</p><pre><code>cd ~/robot_labs
+bash lab.sh plot</code></pre><p>在 rqt_plot 中添加 <code>/$STUDENT_ID/pose/x</code> 与 <code>/$STUDENT_ID/pose/y</code>。它显示变量随时间变化，不是平面轨迹图。</p><p class="checkpoint"><strong>继续：</strong>曲线随数据更新；空白时核对名称和 pose 来源。</p><figure class="lesson-figure"><img src="assets/guide/lab-01-03.png" alt="TurtleSim 轨迹窗口旁边的 rqt_plot 曲线" loading="lazy"><figcaption>教师任务书示例｜左边看运动路径，右边看位姿随时间变化。</figcaption></figure></li>
+<li><h3>用 rqt_graph 检查连接并停机</h3><p><span class="role-tag">Ubuntu 本地终端</span>检查连接图并在关闭图窗、程序退出后停止仿真：</p><pre><code>cd ~/robot_labs
+bash lab.sh graph
+bash lab.sh stop</code></pre><p>找到速度发布者、cmd_vel、TurtleSim 和 pose 连接。保存图和 CSV。</p><p class="checkpoint"><strong>收尾：</strong>发布者、图窗和 TurtleSim 都已关闭。</p></li>
+</ol></section>
+<section id="check"><h2>检查与留证</h2><ul><li>保存节点/服务查询、服务返回、编译输出和节点图。</li><li>保留 cmd.csv 与 pose.csv：前者是仿真命令，后者是 TurtleSim 反馈。</li><li>本章证明软件仿真过程，不证明实体车结果。</li></ul></section>
+<section id="troubleshoot"><h2>常见问题</h2><ul><li>ROS 命令不存在：确认在 sim-shell 容器。</li><li><code>/spawn</code> 不可用：确认 sim 仍运行且 master 为 11431。</li><li>名称已存在：只复用或删除自己的对象。</li><li>节点等不到 pose/订阅者：核对对象名和 TURTLE_NAME。</li><li>撞墙：停止发布、传送回中央并检查是否有其他发布者。</li><li>新 shell 变量为空：重新设置变量，环境不会跨窗口继承。</li></ul></section>
+<section id="finish"><h2>收尾</h2><p>停止速度发布并确认归零，再关 rqt。Ubuntu 本地终端运行 <code>cd ~/robot_labs</code>、<code>bash lab.sh stop</code>。保留工作空间和 CSV，不删套件。</p></section>
+<section id="evidence"><h2>本章证据范围</h2><p>命令来自课程 Noetic 容器套件和操作指南。仿真 master 11431 与实车 11311 分离。Ubuntu-A 提供 Noetic Docker；配套课程资料随同交付。离线检查、仿真与现场结果分别描述。</p></section>
+</article>
+<nav class="chapter-pagination" aria-label="章节切换"><a href="lab-00.html"><span>上一章</span>实验零｜先准备环境</a><a href="lab-02.html"><span>下一章</span>实验二｜连接与遥控</a></nav></main></div>
+<footer class="site-footer"><a href="index.html">机器人与安全实验指导首页</a><span>课程实验操作指南</span></footer></body></html>

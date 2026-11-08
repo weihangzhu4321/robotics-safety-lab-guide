@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light"><title>实验十一｜多机编队（选做） · 机器人与安全实验指导</title><link rel="stylesheet" href="assets/site.css"><script src="assets/site.js" defer></script></head>
+<body class="chapter-page"><a class="skip-link" href="#main-content">跳到正文</a>
+<header class="site-header"><a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">R</span><span>机器人与安全<span class="brand-sub">实验指导 · 网页版</span></span></a><div class="header-meta"><span>实验 11 / 11</span><a href="index.html">回到首页</a></div></header>
+<div class="chapter-layout"><aside class="chapter-aside"><details class="mobile-toc"><summary>打开实验目录</summary><nav aria-label="实验目录"><ol class="chapter-list"><li><a href="lab-00.html">00 <span>先准备环境</span></a></li>
+<li><a href="lab-01.html">01 <span>ROS 基础与 TurtleSim</span></a></li>
+<li><a href="lab-02.html">02 <span>连接与遥控</span></a></li>
+<li><a href="lab-03.html">03 <span>SLAM 与导航</span></a></li>
+<li><a href="lab-04.html">04 <span>循线跟踪（选做）</span></a></li>
+<li><a href="lab-05.html">05 <span>ARP 实验</span></a></li>
+<li><a href="lab-06.html">06 <span>中间人实验</span></a></li>
+<li><a href="lab-07.html">07 <span>有限 SYN 探测</span></a></li>
+<li><a href="lab-08.html">08 <span>RSA 通信（选做）</span></a></li>
+<li><a href="lab-09.html">09 <span>视觉识别</span></a></li>
+<li><a href="lab-10.html">10 <span>SSH 口令安全（隔离）</span></a></li>
+<li><a href="lab-11.html" aria-current="page">11 <span>多机编队（选做）</span></a></li></ol></nav></details><nav class="desktop-toc" aria-label="实验目录"><p class="aside-title">实验目录</p><ol class="chapter-list"><li><a href="lab-00.html">00 <span>先准备环境</span></a></li>
+<li><a href="lab-01.html">01 <span>ROS 基础与 TurtleSim</span></a></li>
+<li><a href="lab-02.html">02 <span>连接与遥控</span></a></li>
+<li><a href="lab-03.html">03 <span>SLAM 与导航</span></a></li>
+<li><a href="lab-04.html">04 <span>循线跟踪（选做）</span></a></li>
+<li><a href="lab-05.html">05 <span>ARP 实验</span></a></li>
+<li><a href="lab-06.html">06 <span>中间人实验</span></a></li>
+<li><a href="lab-07.html">07 <span>有限 SYN 探测</span></a></li>
+<li><a href="lab-08.html">08 <span>RSA 通信（选做）</span></a></li>
+<li><a href="lab-09.html">09 <span>视觉识别</span></a></li>
+<li><a href="lab-10.html">10 <span>SSH 口令安全（隔离）</span></a></li>
+<li><a href="lab-11.html" aria-current="page">11 <span>多机编队（选做）</span></a></li></ol></nav><nav class="page-toc" aria-label="本页内容"><p class="aside-title">本页内容</p><ol><li><a href="#goal">目标与边界</a></li>
+<li><a href="#prepare">准备与检查</a></li>
+<li><a href="#steps">操作步骤</a></li>
+<li><a href="#check">检查与证据</a></li>
+<li><a href="#troubleshoot">故障排查</a></li>
+<li><a href="#finish">收尾</a></li></ol></nav></aside>
+<main class="chapter-main" id="main-content"><div class="chapter-heading"><div><p class="eyebrow">实验 11 · 仿真编队与静态定位证据</p><h1>实验十一｜多机编队（选做）</h1></div><a class="print-link" href="#" data-print>打印本章</a></div><article class="prose">
+<section id="goal">
+  <h2>目标与边界</h2>
+  <p>本章是选做内容，分为三条路线：断网 Gazebo 三车编队、隔离的 <code>move_base</code> Action 接口检查、真实三台车的静态传感器与地图预览。A 是控制机，M 是实验中间机，B 是小车。仿真运动、Action 服务测试和实车静态检查是三类不同证据，不能互相替代。</p>
+  <p class="checkpoint"><strong>实车运动闸门：</strong>实车运动前，先通过前向雷达、里程计、速度话题归属、场地、底盘固定和实体急停检查。任一项未通过就不发布运动指令。</p>
+</section>
+<p class="callout">本章角色：三条路线分别是 Gazebo 仿真、隔离 Action 检查和实车静态观察；实车运动须通过单车和场地检查后再另行评估。</p>
+<section id="prepare">
+  <h2>准备与检查</h2>
+  <p>只在已有 ROS Noetic/Gazebo 环境使用 <code>lab11_formation</code> 包，不能在线安装依赖。开始前选定路线，查清 A 控制机、机器人和 ROS master 的当前状态；不要复用历史地址、话题或 TF frame。Gazebo 路线必须在断网容器运行；Action 路线只接隔离测试服务；实车路线先静态检查，未通过联锁不启动车辆。</p>
+</section>
+<section id="steps">
+  <h2>操作步骤</h2>
+<figure class="lesson-figure"><img src="assets/guide/formation-gates.svg" alt="把实验十一的三类证据分开。Gazebo 编队，用仿真轨迹检查到达误差与最小车距。；隔离 Action 测试，单独检查客户端的状态与退出。；真实车辆静态定位，逐车查传感器。前向净空无效就不发速度。" loading="lazy"><figcaption>操作示意｜实车静态定位记录与仿真编队结果分别保存。</figcaption></figure>
+  <p>先选路线。只做仿真按步骤 1–8；只做 Action 接口检查按步骤 1、9–11；只做实车静态检查按步骤 1、12–15 和 18；联锁失败时执行步骤 17，全部通过且安排单车短测时执行步骤 16。路线之间不共用 ROS master、状态或结果。</p>
+  <ol class="walkthrough">
+    <li><h3>做路线隔离和现场确认</h3><p><span class="role-tag">A 控制机</span> 核对 Noetic 版本、工作区和当前 master。Gazebo/Action 路线使用断网容器及独立临时目录；实车路线确认机器人编号、Wi-Fi、串口和物理停车人。发现 ROS 会话归属或线路不明时，留在只读检查阶段。</p></li>
+    <li><h3>准备三车 Gazebo 包</h3><p><span class="role-tag">A 的 Ubuntu 终端</span> 在配套控制机上运行 <code>bash ~/lab11_prep/open-sim-shell.sh</code>，打开专用的断网 Noetic 容器。课程包已接到工作区。</p><p><span class="role-tag">新开的容器 shell</span> 进入工作区，编译并载入编译结果</p><pre><code>cd ~/catkin_ws
+catkin_make
+source devel/setup.bash</code></pre><p>构建报错时保存原始错误；检查包元数据和工作区配置，不在线下载或升级依赖。</p></li>
+    <li><h3>启动断网编队仿真</h3><p><span class="role-tag">A 断网容器</span> 设定 Burger 型号并启动无 GUI 仿真，输出目录必须确实挂载回 Windows/宿主：</p><pre><code>export TURTLEBOT3_MODEL=burger
+roslaunch lab11_formation three_burger_sim.launch \
+  gui:=false output_dir:="$PWD/runs"</code></pre><p>结束后从 A 的 <code>~/catkin_ws/runs</code> 查看轨迹。该启动文件建立三条各自的 Gazebo 通道，位姿取自仿真模型。</p></li>
+    <li><h3>等全部启动联锁通过</h3><p><span class="role-tag">A Gazebo 终端</span> 等待仿真时间开启、三个模型出现、初始位置正确，并确认每台车各自的 <code>/tb3_i/cmd_vel</code> 都有 Gazebo 订阅者。缺任何一项，程序应零速退出；不要手工补发速度。</p></li>
+    <li><h3>观察队形运行和停车</h3><p><span class="role-tag">A Gazebo 窗口/日志</span> 观察三台 Burger 是否保持各自通道和间距。控制器限速并设置最长运行时间；间距过小、超时、错误或中断时应全车停车。看到碰撞、模型丢失或速度异常时中止并保留日志。</p></li>
+    <li><h3>检查仿真轨迹</h3><p><span class="role-tag">A 输出目录</span> 查看每轮的 <code>trajectory.csv</code> 和 <code>summary.json</code>，核对三车起点/终点、最近间距、结束状态和退出零速。仿真中的 <code>Goal reached</code> 只表示模型完成该场景路线，不表示导航栈或实体车通过。</p></li>
+    <li><h3>退出并保留本轮仿真</h3><p><span class="role-tag">A 断网容器</span> 等控制器完成零速收尾，再退出 ROS launch。确认轮次目录和摘要已写完后才关容器；异常退出时保留现场，不删除原始日志来“整理”结果。</p></li>
+    <li><h3>单独记录仿真结论</h3><p>查看每轮轨迹 CSV 和 JSON 摘要，核对目标误差、最小车间距、结束状态和退出零速。该仿真使用模型真值和专设平行通道，不验证课程地图导航或实车编队。</p></li>
+    <li><h3>确认 Action 客户端的默认状态</h3><p><span class="role-tag">A 独立断网容器</span> 打开 <code>~/lab11_prep/launch/course_move_base_opt_in.launch</code>，找到 <code>allow_send_goals</code>，确认默认值是 <code>false</code>。</p></li>
+    <li><h3>根据现有设备选择 Action 路线</h3><p><span class="role-tag">A 隔离测试容器</span> 三车 Action 联调需要三套对应命名空间的虚拟 Action server。配套资料含客户端和预览配置。手头只有这些文件时，保留默认拒发状态，继续做 Gazebo 编队或实车静态检查。</p></li>
+    <li><h3>记录 Action 接口检查范围</h3><p><span class="role-tag">A 输出目录</span> 只查看配置时，记下默认拒发与目标命名空间即可。如果另有隔离测试服务，再记录测试服务日志、目标分发、超时和取消结果。</p></li>
+    <li><h3>实车路线先停车并核对三车</h3><p><span class="role-tag">场地 / A 控制机</span> 实车开始前清空场地、安排一人负责物理急停，并按车身标签逐台核对当天 Wi-Fi、SSH、串口和 master。每轮从设备和 ROS 图读取当前地址、接口、topic 与 TF；身份或连接不清楚时不启动。</p></li>
+    <li><h3>实车只做静态传感器回读</h3><p><span class="role-tag">A Noetic 终端</span> 先列出 ROS 节点和话题，再按实际话题读取每台车的 scan、odom 与 TF。核对每个速度话题只有对应底盘订阅者，并确认三车静止速度为零。记录消息 frame 与坐标适配结果。</p>
+<pre><code>rosnode list
+rostopic list -v</code></pre></li>
+    <li><h3>在静止状态查看共同地图</h3>  <figure class="lesson-figure"><img src="assets/guide/lab-11-01.png" alt="RViz 多车地图与车辆定位示意" loading="lazy"><figcaption>示意图｜逐车确认定位和坐标后，再查看共同地图。</figcaption></figure><p><span class="role-tag">A RViz · 实车隔离局域网</span> A 与三台车连接到同一隔离实验网络。逐项核对当天地图、各车 pose、scan topic 和 TF 后，在 RViz 打开 Map、LaserScan 和定位显示，逐车选择对应话题。只看三车在共同地图中的静态位置，全程不发导航目标。若某车位置或方向与现场不符，停在该车定位核查。</p><p><strong>另行检查配置文件。</strong>如果用预览 launch 检查隔离配置，只在断网环境进行。速度只接 <code>nav_preview_cmd_vel</code>，无目标发布器；该配置检查独立记录。</p></li>
+    <li><h3>逐项检查前向雷达联锁</h3><p><span class="role-tag">现场操作员 + A 控制机终端</span> 车轮保持架空或底盘锁止，检查 scan 是否新鲜（时间戳距当前不超过 0.40 秒）、frame 是否对应当前车辆、前向扇区是否覆盖车头 ±0.45 弧度，并确认至少 3 个有效非零距离读数且最近距离不少于 0.48 米。里程计须显示车辆静止，目标速度话题只能由本轮测试程序发布并由对应底盘节点订阅。任一项不满足即判为<strong>联锁失败</strong>；不发速度、不转用 Action 路线。</p></li>
+    <li><h3>联锁通过后，下一步是单车短测</h3><p>先只留一台车，固定底盘并架空驱动轮，指定同伴守住实体急停。在有与这台车的命名空间、底盘和传感器匹配、具备限时归零的短测程序时，从零速开始，运行一次短脉冲，随后检查轮向、里程计、归零和程序退出。任一项不对就实体停车，回查这一台车。配套资料的实车路线做到静态检查，暂缺可以在不同车辆上复用的单车短测程序。手头缺少对应程序时，保留静态结果并用上面的 Gazebo 路线练编队。</p><p>即使完成单车短测，三车上场前也要重新核对共用地图、各车初始位姿、车间距和线缆。先逐台通过停车检查，再讨论三车路线。</p></li>
+    <li><h3>联锁失败时停止并保存诊断</h3><p>若联锁未通过，结束本轮并保存 scan 时间戳、frame、前向有效采样数、里程计静止状态和节点清理记录。排除传感器、遮挡或坐标问题后，另开一轮重新执行完整启动与停车检查；不得用旧结果跳过联锁。</p></li>
+    <li><h3>收尾并按证据类型归档</h3><p><span class="role-tag">A / 场地</span> 确认本轮节点和串口已释放、底盘静止、RViz 与临时 master 按启动逆序结束。分别归档 Gazebo 轨迹、隔离 Action 日志、实车静态雷达/里程计/地图截图和联锁结果；不要把三类结果合写成一次“多车编队成功”。</p></li>
+  </ol>
+</section>
+<section id="check">
+  <h2>检查与证据</h2>
+  <p>Gazebo 证据至少包含本轮启动日志、CSV、JSON 和退出零速；Action 证据包含测试服务日志、每车目标记录、取消结果和客户端 JSON；实车静态证据包含当日拓扑、三车 scan/odom 原始读数、TF、地图/RViz 截图及清理回执。报告中明确标注“仿真”“隔离 Action”或“实车静态”。</p>
+  <p>Gazebo 编队、隔离 Action 接口、实车静态检查与实车运动是不同阶段，分别记录结果；静态检查或联锁预览不等于真实车辆已完成编队。</p>
+</section>
+<section id="troubleshoot">
+  <h2>故障排查</h2>
+  <ul>
+    <li><strong>Gazebo 等不到模型/订阅者：</strong>保持零速退出，分别查模型加载、namespace 和 launch 日志；不要直接运行控制器脚本绕过检查。</li>
+    <li><strong>Action server 等待超时或 frame 不一致：</strong>留在隔离测试容器，核对服务名、目标 frame 和本轮日志；不改连实车测试。</li>
+    <li><strong>实车 scan 全零或过期：</strong>将联锁判为失败，停止实车路线，保存原始帧和时间戳；不降低有效采样门槛。</li>
+    <li><strong>三车 TF 或地图位置冲突：</strong>先区分消息话题与 frame ID，保存原始图，不启动导航目标。</li>
+  </ul>
+</section>
+<section id="finish">
+  <h2>收尾</h2>
+  <p>确认所有路线的本轮进程已退出并按类型保存证据。Gazebo 完成不代表 Action 成功；Action 服务通过不代表实车能走；真实静态定位也不代表运动联锁通过。实车运动只从单车短测开始；任何多车路线都要另行核对地图定位、相邻间距、底盘 footprint 和轮边线缆。仿真与隔离 Action 结果不能替代实车编队验证。</p>
+</section>
+</article>
+<nav class="chapter-pagination" aria-label="章节切换"><a href="lab-10.html"><span>上一章</span>实验十｜SSH 口令安全（隔离）</a><a href="index.html"><span>回到首页</span>选择阅读路径</a></nav></main></div>
+<footer class="site-footer"><a href="index.html">机器人与安全实验指导首页</a><span>课程实验操作指南</span></footer></body></html>

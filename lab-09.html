@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light"><title>实验九｜视觉识别 · 机器人与安全实验指导</title><link rel="stylesheet" href="assets/site.css"><script src="assets/site.js" defer></script></head>
+<body class="chapter-page"><a class="skip-link" href="#main-content">跳到正文</a>
+<header class="site-header"><a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">R</span><span>机器人与安全<span class="brand-sub">实验指导 · 网页版</span></span></a><div class="header-meta"><span>实验 09 / 11</span><a href="index.html">回到首页</a></div></header>
+<div class="chapter-layout"><aside class="chapter-aside"><details class="mobile-toc"><summary>打开实验目录</summary><nav aria-label="实验目录"><ol class="chapter-list"><li><a href="lab-00.html">00 <span>先准备环境</span></a></li>
+<li><a href="lab-01.html">01 <span>ROS 基础与 TurtleSim</span></a></li>
+<li><a href="lab-02.html">02 <span>连接与遥控</span></a></li>
+<li><a href="lab-03.html">03 <span>SLAM 与导航</span></a></li>
+<li><a href="lab-04.html">04 <span>循线跟踪（选做）</span></a></li>
+<li><a href="lab-05.html">05 <span>ARP 实验</span></a></li>
+<li><a href="lab-06.html">06 <span>中间人实验</span></a></li>
+<li><a href="lab-07.html">07 <span>有限 SYN 探测</span></a></li>
+<li><a href="lab-08.html">08 <span>RSA 通信（选做）</span></a></li>
+<li><a href="lab-09.html" aria-current="page">09 <span>视觉识别</span></a></li>
+<li><a href="lab-10.html">10 <span>SSH 口令安全（隔离）</span></a></li>
+<li><a href="lab-11.html">11 <span>多机编队（选做）</span></a></li></ol></nav></details><nav class="desktop-toc" aria-label="实验目录"><p class="aside-title">实验目录</p><ol class="chapter-list"><li><a href="lab-00.html">00 <span>先准备环境</span></a></li>
+<li><a href="lab-01.html">01 <span>ROS 基础与 TurtleSim</span></a></li>
+<li><a href="lab-02.html">02 <span>连接与遥控</span></a></li>
+<li><a href="lab-03.html">03 <span>SLAM 与导航</span></a></li>
+<li><a href="lab-04.html">04 <span>循线跟踪（选做）</span></a></li>
+<li><a href="lab-05.html">05 <span>ARP 实验</span></a></li>
+<li><a href="lab-06.html">06 <span>中间人实验</span></a></li>
+<li><a href="lab-07.html">07 <span>有限 SYN 探测</span></a></li>
+<li><a href="lab-08.html">08 <span>RSA 通信（选做）</span></a></li>
+<li><a href="lab-09.html" aria-current="page">09 <span>视觉识别</span></a></li>
+<li><a href="lab-10.html">10 <span>SSH 口令安全（隔离）</span></a></li>
+<li><a href="lab-11.html">11 <span>多机编队（选做）</span></a></li></ol></nav><nav class="page-toc" aria-label="本页内容"><p class="aside-title">本页内容</p><ol><li><a href="#goal">目标与边界</a></li>
+<li><a href="#prepare">准备与检查</a></li>
+<li><a href="#steps">操作步骤</a></li>
+<li><a href="#check">检查与证据</a></li>
+<li><a href="#troubleshoot">故障排查</a></li>
+<li><a href="#finish">收尾</a></li></ol></nav></aside>
+<main class="chapter-main" id="main-content"><div class="chapter-heading"><div><p class="eyebrow">实验 09 · 自编识别流程、输入质量与验证范围</p><h1>实验九｜视觉识别</h1></div><a class="print-link" href="#" data-print>打印本章</a></div><article class="prose">
+<section id="goal">
+  <h2>目标与边界</h2>
+  <p>本章用彩色相机图像观察只读识别器如何处理原版、强扰动、弱扰动和恢复原版标牌，并比较光线变化的影响。识别器通过红色圆形区域和运行时字形模板读图；分数是像素相似度提示，不是准确率或概率。程序只订阅图像，不发布速度。它通过红色圆形区域和运行时字形模板读图；分数是像素相似度提示，不是准确率或概率。程序只订阅图像，不发布速度。</p>
+  <p class="checkpoint"><strong>课程程序状态：</strong>若课程配套识别程序、模型权重和依赖可用，可按其说明另行运行；本页示例使用只读识别器进行图像输入对照，不把识别结果接到车轮控制。</p>
+</section>
+<p class="callout">本章角色：A 是图像处理控制机，M 是标牌与展示端，B 是提供相机图像的小车。识别器只读图像，不发布速度。</p>
+<section id="prepare">
+  <h2>准备与检查</h2>
+  <p>使用 A 控制机的 Noetic 容器、B 小车的彩色相机和 M 展示端。相机与图像话题必须是当天真实核实的；不要照抄旧 IP、master 地址或话题。开始前让 B 静止，停掉已知运动源，由一人负责物理停车。不要为本章安装依赖或升级 ROS。</p>
+</section>
+<section id="steps">
+  <h2>操作步骤</h2>
+  <ol class="walkthrough">
+    <li><h3>核对三端和停车状态</h3><p><span class="role-tag">B 小车旁</span> 确认标牌、相机、供电和小车编号；车轮架空或保持静止，确认没有遥控、循线、导航等其他速度源。<span class="role-tag">A / M</span> 记录当天终端、ROS master 所在端和各端时钟。任何一端地址或 master 不清楚，就停在这里，不启动 ROS 采集。</p></li>
+    <li><h3>在 A 做本机预检</h3><p><span class="role-tag">A Ubuntu 普通终端</span> 进入已部署目录，执行现有离线检查；它只确认工具和环境，不能证明相机已连通。</p><pre><code>cd ~/lab9_prep
+python3 工具/lab9.py self-check
+python3 工具/lab9.py env
+python3 工具/lab9.py verify</code></pre><p>若报缺包或版本不符，保存原始报错并停止；不要临时安装或改容器。</p></li>
+    <li><h3>检查课程识别程序文件</h3><p><span class="role-tag">A Ubuntu 普通终端</span> 若课程提供的程序目录、模型、配置和依赖版本齐全，先记录来源与哈希，再运行只读审计；不要用网上来源不明的相似程序替代：</p><pre><code>cd ~/lab9_prep
+TEACHER="$HOME/lab9_prep/teacher/Hand_wrtten-master"
+test -f "$TEACHER/get_num.py" && python3 工具/lab9.py audit-model "$TEACHER/get_num.py"</code></pre><p>审计结果用于了解文件和模型输入；本页的只读图像对照仍使用示例识别器。</p></li>
+    <li><h3>确认 Gemini 正在发布图像</h3><p><span class="role-tag">B 小车 SSH</span> 若当天尚未启动相机，沿用已经核实的 Gemini 驱动入口；已有共享相机进程就不要重复启动或关闭。<span class="role-tag">A Noetic 容器</span> 在图形终端进入已有现场 shell，再查询真实话题：</p><pre><code>cd ~/lab9_prep
+bash 工具/lab9_control.sh shell
+# 已进入容器后
+rostopic list -v
+rqt_image_view</code></pre><p>在列表中选实际彩色 <code>sensor_msgs/Image</code> 话题，在 rqt 中确认画面持续更新、颜色和方向正常。没有画面时先排查相机、ROS 地址和双向连接；不进入识别步骤。</p></li>
+    <li><h3>记录图像话题和基线条件</h3><p><span class="role-tag">A Noetic 容器</span> 把当天核实的彩色图像话题记为 <code><mark class="replace-value">IMAGE_TOPIC</mark></code>，记录 <code>rostopic type</code>、消息编码、频率和相机节点。<span class="role-tag">M 展示端</span> 先摆原版 80 标牌，记下距离、角度、标牌在屏幕上的尺寸、亮度和现场光线；固定镜头和展示位置。</p><p>画面裁切、曝光过白、反光或持续丢帧时，先调整成像条件并重新确认；不要把无图像误记成识别失败。</p></li>
+    <li><h3>建立新的有界采集目录</h3><p><span class="role-tag">A Noetic 容器</span> 使用一个全新目录，每阶段单独运行 30 秒、最多 10 帧的只读采集。下面的话题和目录名都要换成当天已核实的值；不要复用旧轮次目录。</p><pre><code>python3 自编识别/sign_reader.py ros \
+  --image-topic <mark class="replace-value">/当天核实的彩色图像话题</mark> \
+  --seconds 30 --max-frames 10 \
+  --output runtime/self_written_reader/本轮原版</code></pre><p>达到时间或帧数上限后程序自行结束。确认输出中有原图、标注图和逐帧 <code>ros_recognition.jsonl</code>，再开始摆动标牌。</p></li>
+    <li><h3>重复原版基线</h3><figure class="lesson-figure"><img src="assets/guide/lab-09-02.jpg" alt="原版限速 80 示例牌" loading="lazy"><figcaption>原版标牌示意图。</figcaption></figure><p><span class="role-tag">M 展示端</span> 保持原版标牌不动，让画面稳定；每次另开一个新目录，最多采 10 帧。至少保留三次独立稳定展示，切换标牌的过渡帧另记。<span class="role-tag">A</span> 保留未识别、低置信和歧义结果，不能只挑读对的帧。</p></li>
+    <li><h3>逐项比较扰动标牌</h3><div class="figure-grid"><figure class="lesson-figure"><img src="assets/guide/lab-09-04.jpg" alt="强扰动限速 80 示例牌" loading="lazy"><figcaption>强扰动标牌示意图。</figcaption></figure><figure class="lesson-figure"><img src="assets/guide/lab-09-06.jpg" alt="弱扰动限速 80 示例牌" loading="lazy"><figcaption>弱扰动标牌示意图。</figcaption></figure></div><p><span class="role-tag">M 展示端</span> 按“强扰动 → 弱扰动”依次替换标牌；除标牌本身外，距离、大小、角度、背景和光线尽量不变。每个阶段都回到上一步的命令，以新输出目录重新采集。屏幕反光或标牌边缘被裁切时暂停，先恢复可比条件，再单独记录异常轮次。</p></li>
+    <li><h3>做光线对照</h3><p><span class="role-tag">M 展示端</span> 换回同一张原版标牌，保持距离、大小和角度不变，只改变一项光照条件（例如正面均匀照明与较暗环境）。每种光线分别新建采集目录并重复有界采集。若曝光或相机自动增益随光线变化，一并记录；不要把同时改变光线和距离的结果当成单因素对照。</p></li>
+    <li><h3>恢复原版并复测</h3><p><span class="role-tag">M 展示端</span> 恢复原版 80 标牌和基线光线，重新采一轮。它用于检查输入恢复后自编识别器是否回到原有输出；不代表配套模型恢复，也不能证明小车控制恢复。</p></li>
+    <li><h3>按帧解释输出</h3><p><span class="role-tag">A Noetic 容器</span> 对照 JSONL 中的 <code>number</code>、<code>uncertain</code>、原因、置信分数和原始图像。只有 <code>uncertain=false</code> 才按该程序的规则列作明确输出；<code>uncertain=true</code> 或空值要保留为不确定/未检出。模板分数只是启发式值，不能换算成成功率。重复视频帧也不等于独立样本。</p></li>
+    <li><h3>保存并整理证据</h3><p><span class="role-tag">A / M</span> 每轮保存原始图、标注图、JSONL、轮次目录、程序版本和展示条件；M 的原始录像与 A 的识别输出按同一轮次标记对应。公开页面只放经过裁切的标牌或汇总图，不放人员、网络信息或未经筛选的现场视频。</p></li>
+    <li><h3>结束采集并确认静止</h3><p><span class="role-tag">A</span> 让本轮采集自然到时限结束，确认识别器已退出；<span class="role-tag">M</span> 撤下扰动标牌并恢复原版；<span class="role-tag">B</span> 由现场人员再次确认底盘静止。若意外发现速度发布者或车体移动，立即物理停车并停止本章操作。</p></li>
+  </ol>
+</section>
+<section id="check">
+  <h2>检查与证据</h2>
+  <p>每轮分别保留原版、扰动版和恢复原版的图像与逐帧输出。将未识别、低置信和歧义帧一并记录；少量或重复画面不能代表总体准确率，也不能据此推断特定模型误判。</p>
+  <p>请保留每轮的原始图、标注图、JSONL、轮次时间、标牌与光线条件、异常和停止原因。如课程配套程序缺失，单独记录；静态示范图、合成自测和 ROS 回环只属于离线检查。</p>
+</section>
+<section id="troubleshoot">
+  <h2>故障排查</h2>
+  <ul>
+    <li><strong>宿主提示找不到 <code>rospy</code>：</strong>回到 A 的 Noetic 容器入口，不在 Windows 或 Ubuntu 宿主安装 ROS。</li>
+    <li><strong>rqt 无图或图像停住：</strong>保存相机终端日志，检查话题、类型、编码、发布节点和双向网络；恢复稳定图像后才重开一轮。</li>
+    <li><strong>大量未检出或不确定：</strong>先看原图是否裁切、过暗、反光、倾斜或失焦；一次只调整一个成像因素，保留调整前样本。</li>
+    <li><strong>课程程序或模型缺失：</strong>记录缺少的文件和原始报错，暂停该程序路线；不要把示例识别器结果当作配套程序验证。</li>
+  </ul>
+</section>
+<section id="finish">
+  <h2>收尾</h2>
+  <p>确认采集进程结束、原版标牌已恢复、车辆静止，且本轮数据已保存。识别输出始终与底盘指令和实车运动分开报告；识别输出只反映本轮图像输入，不表示底盘控制或实车运动。</p>
+</section>
+</article>
+<nav class="chapter-pagination" aria-label="章节切换"><a href="lab-08.html"><span>上一章</span>实验八｜RSA 通信（选做）</a><a href="lab-10.html"><span>下一章</span>实验十｜SSH 口令安全（隔离）</a></nav></main></div>
+<footer class="site-footer"><a href="index.html">机器人与安全实验指导首页</a><span>课程实验操作指南</span></footer></body></html>

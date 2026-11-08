@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 256" role="img">
+<title>TurtleSim 新建乌龟前后对照</title>
+<defs><g id="turtle"><ellipse cx="0" cy="0" rx="12" ry="9" fill="#95d6a4"/><path d="M-7-6l-7-5m7 17-7 5M6-6l5-6m-5 18 5 6" stroke="#95d6a4" stroke-width="4" stroke-linecap="round"/><circle cx="15" cy="0" r="5" fill="#b6e7b3"/></g></defs>
+<rect width="640" height="256" rx="10" fill="#edf4f7"/>
+<g font-family="system-ui, sans-serif" font-size="20" fill="#152d44" font-weight="700">
+<text x="30" y="39">启动后</text><text x="380" y="39">调用 /spawn 后</text>
+<rect x="30" y="55" width="228" height="172" rx="5" fill="#4b57de"/><rect x="380" y="55" width="228" height="172" rx="5" fill="#4b57de"/>
+<path d="M278 143h77m-14-12 14 12-14 12" stroke="#166a73" stroke-width="5" fill="none"/>
+<use href="#turtle" x="144" y="135"/><use href="#turtle" x="494" y="135"/><use href="#turtle" x="428" y="188"/>
+<g fill="white" font-family="monospace" font-size="16" text-anchor="middle"><text x="144" y="165">turtle1</text><text x="494" y="165">turtle1</text><text x="428" y="216">s10001</text></g></g></svg>

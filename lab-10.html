@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light"><title>实验十｜SSH 口令安全（隔离） · 机器人与安全实验指导</title><link rel="stylesheet" href="assets/site.css"><script src="assets/site.js" defer></script></head>
+<body class="chapter-page"><a class="skip-link" href="#main-content">跳到正文</a>
+<header class="site-header"><a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">R</span><span>机器人与安全<span class="brand-sub">实验指导 · 网页版</span></span></a><div class="header-meta"><span>实验 10 / 11</span><a href="index.html">回到首页</a></div></header>
+<div class="chapter-layout"><aside class="chapter-aside"><details class="mobile-toc"><summary>打开实验目录</summary><nav aria-label="实验目录"><ol class="chapter-list"><li><a href="lab-00.html">00 <span>先准备环境</span></a></li>
+<li><a href="lab-01.html">01 <span>ROS 基础与 TurtleSim</span></a></li>
+<li><a href="lab-02.html">02 <span>连接与遥控</span></a></li>
+<li><a href="lab-03.html">03 <span>SLAM 与导航</span></a></li>
+<li><a href="lab-04.html">04 <span>循线跟踪（选做）</span></a></li>
+<li><a href="lab-05.html">05 <span>ARP 实验</span></a></li>
+<li><a href="lab-06.html">06 <span>中间人实验</span></a></li>
+<li><a href="lab-07.html">07 <span>有限 SYN 探测</span></a></li>
+<li><a href="lab-08.html">08 <span>RSA 通信（选做）</span></a></li>
+<li><a href="lab-09.html">09 <span>视觉识别</span></a></li>
+<li><a href="lab-10.html" aria-current="page">10 <span>SSH 口令安全（隔离）</span></a></li>
+<li><a href="lab-11.html">11 <span>多机编队（选做）</span></a></li></ol></nav></details><nav class="desktop-toc" aria-label="实验目录"><p class="aside-title">实验目录</p><ol class="chapter-list"><li><a href="lab-00.html">00 <span>先准备环境</span></a></li>
+<li><a href="lab-01.html">01 <span>ROS 基础与 TurtleSim</span></a></li>
+<li><a href="lab-02.html">02 <span>连接与遥控</span></a></li>
+<li><a href="lab-03.html">03 <span>SLAM 与导航</span></a></li>
+<li><a href="lab-04.html">04 <span>循线跟踪（选做）</span></a></li>
+<li><a href="lab-05.html">05 <span>ARP 实验</span></a></li>
+<li><a href="lab-06.html">06 <span>中间人实验</span></a></li>
+<li><a href="lab-07.html">07 <span>有限 SYN 探测</span></a></li>
+<li><a href="lab-08.html">08 <span>RSA 通信（选做）</span></a></li>
+<li><a href="lab-09.html">09 <span>视觉识别</span></a></li>
+<li><a href="lab-10.html" aria-current="page">10 <span>SSH 口令安全（隔离）</span></a></li>
+<li><a href="lab-11.html">11 <span>多机编队（选做）</span></a></li></ol></nav><nav class="page-toc" aria-label="本页内容"><p class="aside-title">本页内容</p><ol><li><a href="#goal">目标与边界</a></li>
+<li><a href="#prepare">准备与检查</a></li>
+<li><a href="#steps">操作步骤</a></li>
+<li><a href="#check">检查与证据</a></li>
+<li><a href="#troubleshoot">故障排查</a></li>
+<li><a href="#finish">收尾</a></li></ol></nav></aside>
+<main class="chapter-main" id="main-content"><div class="chapter-heading"><div><p class="eyebrow">实验 10 · 虚构数据、隔离靶机与防护观察</p><h1>实验十｜SSH 口令安全（隔离）</h1></div><a class="print-link" href="#" data-print>打印本章</a></div><article class="prose">
+<section id="goal">
+  <h2>目标与边界</h2>
+  <p>本章用虚构候选和一台由实验脚本临时建立的本机 OpenSSH 服务，观察 SSH 认证拒绝、主机密钥核验、有限尝试和证据留存。SSH 服务与客户端只在 M 攻击机内部一对临时 veth 和两个 Linux network namespace 中通信；没有默认路由、物理网卡或外部靶机。</p>
+  <p class="checkpoint"><strong>范围限制：</strong>本章只针对脚本自动创建的本机隔离靶场。不要把命令改成真实地址、主机、账号或字典；不要使用真实凭据、个人信息、任意靶机或远程服务。</p>
+</section>
+<section id="prepare">
+  <h2>准备与检查</h2>
+  <p>在配套 M 虚拟机中做。实验脚本临时生成 18 项虚构候选，并用 OpenSSH、Paramiko 和 tcpdump 在 M 的两个隔离网络空间内运行。开机后网卡保持断开。</p>
+</section>
+<section id="steps">
+  <h2>操作步骤</h2>
+  <ol class="walkthrough">
+    <li><h3>确认这是隔离练习</h3>  <figure class="lesson-figure"><img src="assets/guide/isolated-ssh.svg" alt="SSH 口令练习的隔离边界。临时客户端，只在本机隔离空间中读取脚本生成的虚构候选。；虚拟网线 veth，两端只相连，无默认路由，也无物理网卡。；临时 SSH 服务，记录拒绝和接受；结束后删除本轮隔离资源。" loading="lazy"><figcaption>操作示意｜示意图没有真实主机、账号或口令。</figcaption></figure><p><span class="role-tag">M 攻击机</span> 在本章专用终端确认当前操作的是实验十准备目录，不连接课程网、校园网或互联网靶机。若不能确认靶场仍是脚本创建的临时环境，停在这里。</p></li>
+    <li><h3>检查源码与依赖</h3><p><span class="role-tag">M 普通终端</span> 核对脚本和 SSH 工具</p><pre><code>cd ~/lab10_prep
+test -f lab10_bruteforce.py
+test -f 自建靶场/run_isolated_randomized.sh
+python3 --version
+python3 -c 'import paramiko; print(paramiko.__version__)'
+/usr/sbin/sshd -V 2&gt;&amp;1 | head -n 1</code></pre></li>
+    <li><h3>离线生成虚构候选（可选）</h3><p><span class="role-tag">Windows PowerShell</span> 若要重看生成规则，只使用下例中的虚构字段；不要填真实姓名、学号或口令。输出文件应留在练习目录并按敏感练习数据处理。</p><pre><code>python .\lab10_bruteforce.py generate `
+  --surname li --given-initials xy --student-number 000000 `
+  --output .\fictional-candidates.txt</code></pre><p>这是离线文本生成，没有 SSH 连接。本站不展示候选文本。</p></li>
+    <li><h3>给本轮建立结果目录</h3><p><span class="role-tag">M 普通终端</span> 每轮用一个新目录，便于查看清理记录</p><pre><code>RUN=$(mktemp -d "$HOME/lab10-run-XXXXXX")
+printf '%s\n' "$RUN"</code></pre></li>
+    <li><h3>运行隔离靶场</h3><p><span class="role-tag">M 同一个终端</span> 输入自己设置的 Ubuntu 密码。脚本会生成本轮虚构候选、启动临时 SSH 服务并校验临时主机密钥</p><pre><code>sudo bash ~/lab10_prep/自建靶场/run_isolated_randomized.sh \
+  --evidence "$RUN/experiment10-evidence.tar.gz"</code></pre><p>客户端只连接脚本自己创建的隔离 SSH 服务。</p></li>
+    <li><h3>观察启动门槛和失败分支</h3><p><span class="role-tag">M 临时实验终端</span> 脚本若提示 namespace 中出现额外网卡、默认路由、SSH 服务未就绪、主机密钥不符或参数验证失败，不要继续试连接。保存错误并让本轮脚本按退出流程清理；不能通过重试其他地址排障。</p></li>
+    <li><h3>在限定预算内观察认证结果</h3><p><span class="role-tag">M 临时实验终端</span> 客户端仅对脚本在本轮 namespace 中创建的 SSH 服务尝试最多 18 个虚构候选，失败之间至少间隔 1 秒，命中后停止。观察认证拒绝与成功提示，不打开口令内容，也不把候选值抄进笔记。</p></li>
+    <li><h3>对照脱敏汇总和抓包</h3><p><span class="role-tag">M 普通终端</span> 只检查脚本生成的 <code>run-summary.txt</code>、限定流量 PCAP 和 SHA256 清单。确认摘要标明 <code>loopback-veth-netns-only</code>、无默认路由、无物理接口、18 项虚构候选和实际停止原因。不要将 PCAP 当成明文口令证据。</p></li>
+    <li><h3>核对脚本是否清理本轮资源</h3><p><span class="role-tag">M root 终端</span> 等脚本正常返回后确认本轮 namespace、临时 sshd、监听端口和临时账号文件均已移除。若脚本以非零状态退出，先保留状态回执，再只核对本脚本创建的资源；不要清理同名的其他网络空间或进程。</p></li>
+    <li><h3>查看练习输出</h3><p>从摘要中读取实际尝试数、停止原因、服务端拒绝/接受计数和抓包统计；这些数字只描述本轮脚本创建的隔离靶场，不表示远程账号或服务已测试。</p></li>
+    <li><h3>归档并结束</h3><p><span class="role-tag">M / Windows</span> 只复制脱敏摘要、受限 PCAP 与哈希清单；检查压缩包里没有字典、口令、哈希、临时 host key 或原始认证日志。核验文件可打开、哈希一致后结束本章，不继续对其他目标试探。</p></li>
+  </ol>
+</section>
+<section id="check">
+  <h2>检查与证据</h2>
+  <p>合格记录应能说明练习范围是脚本创建的两个 network namespace 与一对 veth，包含客户端/服务端有无默认路由、有无物理接口、候选上限、认证尝试数、停止原因、退出码、脱敏摘要和 PCAP 哈希。成功只说明本地隔离链路与客户端互操作工作；它不能证明真实密码安全或任何远程账户已测试。</p>
+  <p>如果服务端限制认证尝试或退出后发现子进程残留，保存原始错误与清理回执，先按本轮资源标识核对，再处理脚本创建的资源；不要放宽范围或改用非隔离目标重试。</p>
+</section>
+<section id="troubleshoot">
+  <h2>故障排查</h2>
+  <ul>
+    <li><strong>Paramiko 无法导入。</strong>确认打开的是配套 M。先复查准备步骤中的 Python 导入命令。</li>
+    <li><strong>未知或不匹配的 host key：</strong>立即停止，不选择“接受”或关闭校验。</li>
+    <li><strong>额外网卡、默认路由或 namespace 验证失败：</strong>不要开始 SSH 尝试；保留回执，按唯一的本轮资源标识检查清理。</li>
+    <li><strong>脚本非零退出或残留 sshd：</strong>不要反复运行；先确认本轮进程与临时资源，再保留原始退出码和状态。</li>
+  </ul>
+</section>
+<section id="finish">
+  <h2>收尾</h2>
+  <p>以清理回执、端口不再监听、临时 namespace 已删除和摘要哈希为结束检查。不要保存或发布候选字典、口令、哈希、私钥或包含这些内容的原始终端记录。整个流程应始终留在本机隔离靶场。</p>
+</section>
+</article>
+<nav class="chapter-pagination" aria-label="章节切换"><a href="lab-09.html"><span>上一章</span>实验九｜视觉识别</a><a href="lab-11.html"><span>下一章</span>实验十一｜多机编队（选做）</a></nav></main></div>
+<footer class="site-footer"><a href="index.html">机器人与安全实验指导首页</a><span>课程实验操作指南</span></footer></body></html>

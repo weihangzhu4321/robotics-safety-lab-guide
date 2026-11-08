@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light"><title>实验二｜连接与遥控 · 机器人与安全实验指导</title><link rel="stylesheet" href="assets/site.css"><script src="assets/site.js" defer></script></head>
+<body class="chapter-page"><a class="skip-link" href="#main-content">跳到正文</a>
+<header class="site-header"><a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">R</span><span>机器人与安全<span class="brand-sub">实验指导 · 网页版</span></span></a><div class="header-meta"><span>实验 02 / 11</span><a href="index.html">回到首页</a></div></header>
+<div class="chapter-layout"><aside class="chapter-aside"><details class="mobile-toc"><summary>打开实验目录</summary><nav aria-label="实验目录"><ol class="chapter-list"><li><a href="lab-00.html">00 <span>先准备环境</span></a></li>
+<li><a href="lab-01.html">01 <span>ROS 基础与 TurtleSim</span></a></li>
+<li><a href="lab-02.html" aria-current="page">02 <span>连接与遥控</span></a></li>
+<li><a href="lab-03.html">03 <span>SLAM 与导航</span></a></li>
+<li><a href="lab-04.html">04 <span>循线跟踪（选做）</span></a></li>
+<li><a href="lab-05.html">05 <span>ARP 实验</span></a></li>
+<li><a href="lab-06.html">06 <span>中间人实验</span></a></li>
+<li><a href="lab-07.html">07 <span>有限 SYN 探测</span></a></li>
+<li><a href="lab-08.html">08 <span>RSA 通信（选做）</span></a></li>
+<li><a href="lab-09.html">09 <span>视觉识别</span></a></li>
+<li><a href="lab-10.html">10 <span>SSH 口令安全（隔离）</span></a></li>
+<li><a href="lab-11.html">11 <span>多机编队（选做）</span></a></li></ol></nav></details><nav class="desktop-toc" aria-label="实验目录"><p class="aside-title">实验目录</p><ol class="chapter-list"><li><a href="lab-00.html">00 <span>先准备环境</span></a></li>
+<li><a href="lab-01.html">01 <span>ROS 基础与 TurtleSim</span></a></li>
+<li><a href="lab-02.html" aria-current="page">02 <span>连接与遥控</span></a></li>
+<li><a href="lab-03.html">03 <span>SLAM 与导航</span></a></li>
+<li><a href="lab-04.html">04 <span>循线跟踪（选做）</span></a></li>
+<li><a href="lab-05.html">05 <span>ARP 实验</span></a></li>
+<li><a href="lab-06.html">06 <span>中间人实验</span></a></li>
+<li><a href="lab-07.html">07 <span>有限 SYN 探测</span></a></li>
+<li><a href="lab-08.html">08 <span>RSA 通信（选做）</span></a></li>
+<li><a href="lab-09.html">09 <span>视觉识别</span></a></li>
+<li><a href="lab-10.html">10 <span>SSH 口令安全（隔离）</span></a></li>
+<li><a href="lab-11.html">11 <span>多机编队（选做）</span></a></li></ol></nav><nav class="page-toc" aria-label="本页内容"><p class="aside-title">本页内容</p><ol><li><a href="#goal">本章目标</a></li>
+<li><a href="#prepare">准备与安全条件</a></li>
+<li><a href="#steps">连接、查看与遥控</a></li>
+<li><a href="#check">通过条件与留证</a></li>
+<li><a href="#troubleshoot">常见问题</a></li>
+<li><a href="#finish">收尾</a></li>
+<li><a href="#evidence">本章证据范围</a></li></ol></nav></aside>
+<main class="chapter-main" id="main-content"><div class="chapter-heading"><div><p class="eyebrow">实验 02 · 主机、小车、网络连通与低速遥控</p><h1>实验二｜连接与遥控</h1></div><a class="print-link" href="#" data-print>打印本章</a></div><article class="prose"><section id="goal"><h2>本章目标</h2><p>在课程现场网络中连接 Ubuntu Noetic 控制环境，检查小车 ROS、scan/odom/TF 和 RViz，再用按住行驶、松开停车的低速窗口做短动。没有现场小车、授权或停车方式时，只阅读，不将 ping 或命令运行当作控制成功。</p><p class="callout"><strong>依赖：</strong>交付的 Ubuntu-A 控制机、预置 <code>~/robot_labs</code> 和 ROS 1 Noetic Docker 环境。入口命令来自预置的 <code>lab.sh</code>。</p></section>
+<section id="prepare"><h2>准备与安全条件</h2><p>Ubuntu 本地终端先进入 <code>~/robot_labs</code>。控制机须桥接到当天实验 Wi-Fi；确认车辆归本组使用、一人看车、实体停车方式可用、没有其他遥控或导航程序发布速度。</p></section>
+<section id="steps"><h2>操作步骤：连网、检查、短动、停车</h2><ol class="walkthrough">
+<li><h3>确认课程套件可用</h3><p><span class="role-tag">Ubuntu 本地终端 A</span>运行 <code>cd ~/robot_labs</code>、<code>bash lab.sh health</code>。</p><p class="checkpoint"><strong>继续：</strong>显示 <code>SOFTWARE_CHECK_PASS</code>。失败时按套件指南处理，勿在现场临时下载。</p></li>
+<li><h3>在 VMware 中把网卡设为现场桥接</h3><p><span class="role-tag">Windows / VMware Workstation</span>先在 Windows 连接课程现场 Wi-Fi，并将本虚拟机正常关机。打开 VMware Workstation，在左侧库中选中控制机，点“虚拟机 → 设置 → 网络适配器”。选“自定义：特定虚拟网络”，下拉框选 VMnet0；勾选“已连接”和“启动时连接”。</p><p>若 VMnet0 尚未绑定正确网卡，在 VMware 菜单点“编辑 → 虚拟网络编辑器”，选择 VMnet0，把“桥接到”从自动改为当前连接现场 Wi-Fi 的实体无线网卡，点“应用”。回到虚拟机设置，确认网络适配器仍指向 VMnet0。界面名称会随 Workstation 版本和语言设置变化；此图是课程教师任务书中的设置窗口示例，截图未注明 VMware 版本，不能据此确认版本号。</p><p class="checkpoint"><strong>继续：</strong>VMnet0 已明确绑定当天实际使用的物理 WLAN，虚拟机网卡指向 VMnet0。配置完成仍不代表 Ubuntu 已取得现场地址。</p><figure class="lesson-figure"><img src="assets/guide/lab-02-02.png" alt="VMware 虚拟网卡桥接配置窗口" loading="lazy"><figcaption>教师任务书示例｜VMware 版本：截图未注明。图中选中的是“桥接模式”。本步骤选“自定义”并指定 VMnet0，实际绑定的物理网卡在虚拟网络编辑器中确认。</figcaption></figure></li>
+<li><h3>核对 Ubuntu 地址</h3><p><span class="role-tag">Ubuntu 本地终端 A</span>运行 <code>ip -br -4 addr</code> 和 <code>ip -4 route</code>，记录 Ubuntu 实际接口、IPv4 与路由。不可填 Windows 或 Docker 地址。</p><p class="checkpoint"><strong>继续：</strong>有符合现场网段的 Ubuntu 地址；没有就回 VMware/WLAN 检查。</p></li>
+<li><h3>填写当天小车配置</h3><p><span class="role-tag">Ubuntu 本地终端 A</span>首次配置时在套件目录运行 <code>cp -n settings.env.example settings.env</code>、<code>nano settings.env</code>，只填当天核实的 <code>ROBOT_IP</code>、用户名与车型；不要存密码。</p><p class="checkpoint"><strong>继续：</strong>配置与本组实际使用的车辆相符，VM_IP 通常留空供套件按路由识别。已有正确配置不要覆盖。</p></li>
+<li><h3>检查到车路由和端口</h3><p><span class="role-tag">Ubuntu 本地终端 A</span>运行 <code>bash lab.sh net</code>。套件会显示到车路由，并检查 SSH 22 和 ROS master 11311。</p><p class="checkpoint"><strong>继续：</strong>目标地址正确、Ubuntu 源地址正确且所需端口可达。ping 或单端口可达本身不是传感器通过。</p></li>
+<li><h3>只读检查小车 ROS 状态</h3><p><span class="role-tag">Ubuntu 本地终端 A</span>运行 <code>bash lab.sh doctor</code>，查看已有 master、节点和驱动状态。</p><p class="checkpoint"><strong>继续：</strong>理解输出中的正常项与缺项；如另一组在使用或设备状态不明，停止，不运行准备操作。</p></li>
+<li><h3>仅在授权且确实缺驱动时准备</h3><p><span class="role-tag">Ubuntu 本地终端 A</span>只有只读检查确认 master/驱动缺失、且本组正在进行对应维护操作时，才运行 <code>bash lab.sh prepare</code>。按提示输入小车 SSH 密码，不是 Ubuntu 密码。</p><p class="checkpoint"><strong>继续：</strong>prepare 输出没有未处理错误；部分驱动、串口等异常时保留日志并停下，勿重复启动。</p></li>
+<li><h3>必要时先校时</h3><p><span class="role-tag">Ubuntu 本地终端 A</span>只有系统时间不一致且 SLAM/导航未启动时，运行 <code>bash lab.sh sync-clock</code>。不要在建图或导航运行时改时钟。</p><p class="checkpoint"><strong>继续：</strong>控制机和小车时间同步完成。无时间问题时不需执行。</p></li>
+<li><h3>检查传感器与时间戳</h3><p><span class="role-tag">Ubuntu 本地终端 A</span>运行 <code>bash lab.sh check</code> 并等待约 20 秒完整输出。</p><p class="checkpoint"><strong>继续：</strong>必须看到 <code>SENSOR_CHECK=PASS</code>，且 scan、odom、TF 的接收年龄与 header 时间戳新鲜。只看计数增加不够；FAIL 就保存日志并停。</p></li>
+<li><h3>打开实车可视化</h3><p><span class="role-tag">Ubuntu 本地终端 A</span>运行 <code>bash lab.sh view</code>，等待 RViz 显示模型与激光。</p><p class="checkpoint"><strong>继续：</strong>模型出现、激光随现场障碍变化。不要要求尚未建图时一定出现 map frame。</p><figure class="lesson-figure"><img src="assets/guide/lab-02-04.jpg" alt="RViz 中的机器人模型、坐标网格和激光点" loading="lazy"><figcaption>教师任务书示例｜先看模型和激光数据是否出现，再进入遥控环节。</figcaption></figure></li>
+<li><h3>打开实车 ROS shell</h3><p><span class="role-tag">Ubuntu 本地终端 B</span>另开窗口运行 <code>cd ~/robot_labs</code>、<code>bash lab.sh shell</code>。在新容器 shell 检查 <code>echo "$ROS_MASTER_URI"</code>、<code>echo "$ROS_IP"</code>。</p><p class="checkpoint"><strong>继续：</strong>master 指向当天小车 11311，ROS_IP 是 Ubuntu 当前地址，不是 Docker 网段或 127.0.0.1。</p></li>
+<li><h3>核对节点、速度来源和传感器</h3><p><span class="role-tag">实车容器 shell</span>运行：</p><pre><code>rosnode list
+rostopic info /cmd_vel
+rostopic echo -n 1 /scan/header
+rostopic echo -n 1 /odom/header
+rosrun tf tf_echo odom base_scan</code></pre><p>最后的 TF 命令持续输出，按 Ctrl+C 结束。</p><p class="checkpoint"><strong>继续：</strong>scan/odom 有新样本，TF 正常，RViz 激光反映实景；记录 /cmd_vel 发布者与订阅者。</p></li>
+<li><h3>打开低速键盘窗口</h3><p><span class="role-tag">Ubuntu 本地终端 C</span>车前方空旷、看车者就位且速度源唯一时运行 <code>cd ~/robot_labs</code>、<code>bash lab.sh teleop</code>。</p><p class="checkpoint"><strong>继续：</strong>键盘窗口显示按键说明与等待状态。没有焦点时不要按键试车。</p></li>
+<li><h3>做一次极短方向检查</h3><p><span class="role-tag">键盘控制窗口 / 看车者</span>点击窗口取得焦点，按住 W 或 S 做极短动作，A/D 控制转向；松开按键、空格或 Esc 应发停车，Q 退出。不要按住不放观察很久。</p><p class="checkpoint"><strong>继续：</strong>实车方向符合按键，松开后车停稳。若反向、加速异常、失联或传感器过期，立刻松键并用实体停车方式。</p></li>
+<li><h3>保存本轮观察</h3><p><span class="role-tag">操作者 / 记录者</span>记录操作者、当天网络、传感器检查输出、RViz、按键和停车观察，保存套件日志与现场短视频。</p><p class="checkpoint"><strong>继续：</strong>区分发布命令与实测速度/距离；无仪器测量时不写精确值。</p></li>
+<li><h3>结束本地控制并确认停车</h3><p><span class="role-tag">Ubuntu 本地终端</span>退出键盘窗口后运行 <code>cd ~/robot_labs</code>、<code>bash lab.sh stop</code>。它停止本套件电脑端容器，不关闭小车 master 或驱动。</p><p class="checkpoint"><strong>收尾：</strong>看车者目视确认静止，再按现场安排处理电源；软件退出不等于小车已关机。</p></li>
+</ol></section>
+<section id="check"><h2>通过条件与留证</h2><ul><li>保存当天拓扑、接口/路由、master 与时间。</li><li>保存 <code>SENSOR_CHECK</code> 完整输出、scan/odom/TF 和 RViz 动态画面。</li><li>记录操作者、按键和实际停车观察；命令值不是实测速度或制动距离。</li><li>保留失败轮原始输出；离线自检不算实车结果。</li></ul></section>
+<section id="troubleshoot"><h2>常见问题</h2><ul><li>Ubuntu 无实验网地址：检查 VMware 桥接到当前 WLAN、网卡已连接和 VMnet0。</li><li><code>Unable to communicate with master</code>：核对当天车址、11311 和小车 ROS；不要另起电脑 roscore 伪装 master。</li><li>scan 有话题但没新样本：查雷达驱动、源节点和时间戳，不要重开 RViz 代替修源端。</li><li><code>SENSOR_CHECK=FAIL</code>：保存细节；检查两端时钟、接收年龄与 TF，不因计数增长继续。</li><li>松键不停车：确认焦点、唯一速度发布者并立即实体停车；不要假定标准 TurtleBot3 键盘按键相同。</li><li>切 Wi-Fi 后断开：先停车，再核对新地址和路由，重新检查。</li></ul></section>
+<section id="finish"><h2>收尾</h2><p>松键、目视确认停稳、关闭键盘，再运行本套件 <code>bash lab.sh stop</code>。小车端 master 和驱动按现场安排处理。保存日志与停车记录后再切换网络。</p></section>
+<section id="evidence"><h2>本章证据范围</h2><p>主线使用课程 ROS 1 Noetic Docker 套件连接机器人现有 ROS 1 master；历史 ROS2 适配路线不与此步骤混写。话题可见、网络可达和离线自检都不能代替本轮真实传感器与停车证据。</p></section>
+</article>
+<nav class="chapter-pagination" aria-label="章节切换"><a href="lab-01.html"><span>上一章</span>实验一｜ROS 基础与 TurtleSim</a><a href="lab-03.html"><span>下一章</span>实验三｜SLAM 与导航</a></nav></main></div>
+<footer class="site-footer"><a href="index.html">机器人与安全实验指导首页</a><span>课程实验操作指南</span></footer></body></html>

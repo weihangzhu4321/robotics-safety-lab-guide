@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light"><title>实验八｜RSA 通信（选做） · 机器人与安全实验指导</title><link rel="stylesheet" href="assets/site.css"><script src="assets/site.js" defer></script></head>
+<body class="chapter-page"><a class="skip-link" href="#main-content">跳到正文</a>
+<header class="site-header"><a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">R</span><span>机器人与安全<span class="brand-sub">实验指导 · 网页版</span></span></a><div class="header-meta"><span>实验 08 / 11</span><a href="index.html">回到首页</a></div></header>
+<div class="chapter-layout"><aside class="chapter-aside"><details class="mobile-toc"><summary>打开实验目录</summary><nav aria-label="实验目录"><ol class="chapter-list"><li><a href="lab-00.html">00 <span>先准备环境</span></a></li>
+<li><a href="lab-01.html">01 <span>ROS 基础与 TurtleSim</span></a></li>
+<li><a href="lab-02.html">02 <span>连接与遥控</span></a></li>
+<li><a href="lab-03.html">03 <span>SLAM 与导航</span></a></li>
+<li><a href="lab-04.html">04 <span>循线跟踪（选做）</span></a></li>
+<li><a href="lab-05.html">05 <span>ARP 实验</span></a></li>
+<li><a href="lab-06.html">06 <span>中间人实验</span></a></li>
+<li><a href="lab-07.html">07 <span>有限 SYN 探测</span></a></li>
+<li><a href="lab-08.html" aria-current="page">08 <span>RSA 通信（选做）</span></a></li>
+<li><a href="lab-09.html">09 <span>视觉识别</span></a></li>
+<li><a href="lab-10.html">10 <span>SSH 口令安全（隔离）</span></a></li>
+<li><a href="lab-11.html">11 <span>多机编队（选做）</span></a></li></ol></nav></details><nav class="desktop-toc" aria-label="实验目录"><p class="aside-title">实验目录</p><ol class="chapter-list"><li><a href="lab-00.html">00 <span>先准备环境</span></a></li>
+<li><a href="lab-01.html">01 <span>ROS 基础与 TurtleSim</span></a></li>
+<li><a href="lab-02.html">02 <span>连接与遥控</span></a></li>
+<li><a href="lab-03.html">03 <span>SLAM 与导航</span></a></li>
+<li><a href="lab-04.html">04 <span>循线跟踪（选做）</span></a></li>
+<li><a href="lab-05.html">05 <span>ARP 实验</span></a></li>
+<li><a href="lab-06.html">06 <span>中间人实验</span></a></li>
+<li><a href="lab-07.html">07 <span>有限 SYN 探测</span></a></li>
+<li><a href="lab-08.html" aria-current="page">08 <span>RSA 通信（选做）</span></a></li>
+<li><a href="lab-09.html">09 <span>视觉识别</span></a></li>
+<li><a href="lab-10.html">10 <span>SSH 口令安全（隔离）</span></a></li>
+<li><a href="lab-11.html">11 <span>多机编队（选做）</span></a></li></ol></nav><nav class="page-toc" aria-label="本页内容"><p class="aside-title">本页内容</p><ol><li><a href="#goal">目标与边界</a></li>
+<li><a href="#prepare">准备与检查</a></li>
+<li><a href="#steps">操作步骤</a></li>
+<li><a href="#check">检查与证据</a></li>
+<li><a href="#troubleshoot">故障排查</a></li>
+<li><a href="#finish">收尾</a></li><li><a href="#evidence">结果与证据范围</a></li></ol></nav></aside>
+<main class="chapter-main" id="main-content"><div class="chapter-heading"><div><p class="eyebrow">实验 08 · 加密通信、异常处理与零速收尾</p><h1>实验八｜RSA 通信（选做）</h1></div><a class="print-link" href="#" data-print>打印本章</a></div><article class="prose"><section id="goal">
+  <h2>本章目标</h2>
+  <p><strong>选做；本页只讲独立预览，不连接底盘速度执行口。</strong> 在 ROS1 中交换 RSA 公钥、人工核对指纹、加密有限样例并在 B 端解密到预览话题。本章只将解密结果输出到预览话题，不连接底盘速度执行口。本章不要求读者生成、复制或公开私钥。</p>
+  <p class="callout">课程实现使用 RSA-2048 与 PyCryptodome 3.23.0、PKCS#1 v1.5。加密本身不认证发送者，也不防重放；人工核对公钥指纹只确认本轮公钥来源。</p>
+</section>
+<p class="callout">本章角色：A 是加密发送端，B 是本机生成密钥并接收预览的小车，M 可做限时抓包。所有示例只在自有隔离实验主机间运行，输出仅进入预览话题。</p>
+<section id="prepare">
+  <h2>准备与检查</h2>
+  <p>角色：A 是加密发送/公钥接收端，B 本机生成密钥并解密预览，M 可选做限时抓包。需要实验八源码与固定版本 vendor、ROS1、独立 catkin 工作区和与 rospy 匹配的 Python。网站不提供私钥或完整 VM。若缺少这些文件或版本不符，先停在原理学习，不安装来源不明的软件。</p>
+  <p class="checkpoint">所有速度样例只进入 <code>/lab8/preview_cmd_vel</code>。不得添加运动开关、改到 <code>/cmd_vel</code> 或连接实车底盘。密钥只在 B 本机生成；私钥不显示、不拍照、不传给 A/M、不提交。</p>
+</section>
+<section id="steps">
+  <h2>操作步骤</h2>
+  <ol class="walkthrough">
+    <li><h3>核对 A、B、M 身份</h3><p><span class="role-tag">A / B / M 本机</span> 读取主机名、接口、路由、ROS 发行版、Python 版本与处理器架构；记录本轮地址，不复用历史值。B 由本地终端核实网络身份。</p><p>ROS master 归属不明、B 的架构/解释器不清或路由不通：暂停，不复制代码或生成密钥。</p></li>
+    <li><h3>确认 B 静止且不另启 master</h3><p><span class="role-tag">B / 看车人</span> 确认原 master 的主机与端口、现有底盘节点状态、车辆静止。若本章只做离线预览，也不需要启动底盘。不得另起 roscore 覆盖现场 master。</p><p>若有其他遥控、导航或底盘动作：先由原操作者正常结束冲突任务，不能停止共享服务。</p></li>
+    <li><h3>复验 A 的离线资料</h3><p><span class="role-tag">A，普通用户终端</span> 在已提供的实验八目录依次运行：</p><pre><code>cd ~/lab8_prep
+python3 工具/lab8.py self-test
+python3 工具/lab8.py loopback
+bash 工具/lab8_control.sh build
+bash 工具/lab8_control.sh self-check</code></pre><p>记录固定版本、日志路径与退出码。回环结果只说明本机程序过程。</p><p>导入失败、版本不是课程固定版本、构建失败：保存错误，不全局升级 Python，不继续部署。</p></li>
+    <li><h3>确认 B 的 ROS/Python 配对</h3><p><span class="role-tag">B，本机终端</span> 每个新终端都要重新 source 与 rospy 匹配的 ROS 工作区和解释器。Kinetic 通常配 Python 2，Noetic 通常配 Python 3；必须以 B 实际安装为准：</p><pre><code># 按B实际情况只选对应一组
+source /opt/ros/kinetic/setup.bash
+PY=python2
+# 或：source /opt/ros/noetic/setup.bash
+#     PY=python3
+"$PY" -c 'import rospy, sys; print(sys.version)'</code></pre><p>用同一解释器只读检查 ROS、Crypto 版本、服务类型和架构。ARMv7/Python 2 必须用资料规定的本机源码构建路线，不能拷 x86 wheel。</p><p>解释器不匹配、服务类型缺失或源码构建报错：停止并保留日志；不要尝试在线 pip 修补。</p></li>
+    <li><h3>建立新证据目录并核对代码来源</h3><p><span class="role-tag">A / B</span> 每次实验使用新的本地证据目录；核对课程包 manifest、源码版本和文件哈希。传输包先排除 runtime、密钥、账号文件与旧证据。</p><p>目标目录已有旧版：先核对版本并另存；不能把新旧文件解到同一目录混合。</p></li>
+    <li><h3>在 B 本机生成 RSA 密钥</h3>  <figure class="lesson-figure"><img src="assets/guide/rsa-preview.svg" alt="公钥去 A，私钥留 B。B 生成本轮密钥，当面与 A 核对公钥指纹；私钥始终留在 B。；A 用核对后的公钥加密，先发零速样例，记录本轮结果。；B 解密并查看预览，输出进入预览话题，分别检查断流与退出。" loading="lazy"><figcaption>操作示意｜预览话题只用于核对数据，不接实车控制。</figcaption></figure><p><span class="role-tag">B，本机终端</span> 仅用课程工具生成 RSA-2048 密钥并显示公钥指纹：</p><pre><code>cd ~/lab8_prep
+"$PY" 工具/lab8.py keygen --key-dir ~/lab8_keys --robot-local
+"$PY" 工具/lab8.py fingerprint --public-key ~/lab8_keys/public.pem
+stat -c '%a %n' ~/lab8_keys ~/lab8_keys/private.pem</code></pre><p>确认目录权限为 700、私钥文件为 600，只检查权限和存在性，不运行 cat、不复制私钥。</p><p>私钥权限过宽、工具报告密钥不匹配或目录中有来源不清的旧密钥：停止并保留现状；不覆盖、不删除旧私钥。</p></li>
+    <li><h3>A 启动公钥接收服务</h3><p><span class="role-tag">A 的 ROS1 容器终端</span> 进入课程工作区 shell，在本轮独立证据目录启动一次性接收服务：</p><pre><code>cd ~/lab8_prep
+bash 工具/lab8_control.sh shell
+# 以下在A容器中运行；保持终端打开
+mkdir -p /lab8/runtime/evidence
+python3 /lab8/工具/lab8_ros.py receive-key \
+  --key-dir ~/lab8_remote_key \
+ 2&gt;&amp;1 | tee /lab8/runtime/evidence/receive-key.log</code></pre><p>不要另起 master；保留运行日志。</p><p>服务类型或节点归属不明、已有同名服务：先停止当前步骤并核实，不并行启动多个接收服务。</p></li>
+    <li><h3>B 发送公钥，A 核对完整指纹</h3><p><span class="role-tag">B → A</span> B 使用自己的 ROS 地址连接原 master，然后发送公钥：</p><pre><code>read -r -p '小车当天地址: ' ROBOT_IP
+unset ROS_HOSTNAME
+export ROS_MASTER_URI="http://${ROBOT_IP}:11311"
+export ROS_IP="$ROBOT_IP"
+cd ~/lab8_prep
+"$PY" 工具/lab8_ros.py send-key --key-dir ~/lab8_keys</code></pre><p>确认 ROS 地址取自 B 当天实际接口。A 在本机计算收到公钥的 SHA-256，与 B 本机显示的完整指纹逐字符核对。保留指纹和成功回执，不保存私钥。</p><p>任何字符不一致、服务回执失败或公钥来源不明：停止本轮发送，重新检查当前密钥目录；不要覆盖密钥“试到一致”。</p></li>
+    <li><h3>启动 B 的独立预览接收器</h3><p><span class="role-tag">B，新终端</span> 重新 source 正确 ROS、工作区与匹配 Python，启动课程接收器并保存日志：</p><pre><code>cd ~/lab8_prep
+"$PY" 工具/lab8_ros.py robot --key-dir ~/lab8_keys \
+  2&gt;&amp;1 | tee ~/lab8_evidence/B_preview.log</code></pre><p>另开 B 的 ROS 终端检查话题类型与发布/订阅者：
+<pre><code>rostopic info /cmd_vel
+rostopic info /lab8/Cypered_cmd_vel
+timeout 10 rostopic echo /lab8/preview_cmd_vel</code></pre>
+预览话题不得有底盘驱动订阅者，本章节点不得发布到 <code>/cmd_vel</code>。</p><p>主题名不符、发现底盘订阅或出现运动：立即关闭发送器、实体停车并结束实验。</p></li>
+    <li><h3>A 开始限时抓包</h3><p><span class="role-tag">A / 可选 M</span> 在隔离实验网络中，只对本轮 A/B 实验地址与端口限时抓包；检查抓包文件正在增长，记录接口与过滤条件。抓不到单播不代表加密失败。</p><p>目标范围不符、PCAP 不可写或包含无关网络：停止抓包并调整到本轮隔离实验范围，不能扩大过滤目标。</p></li>
+    <li><h3>先发送零值样例</h3><p><span class="role-tag">A 发送端；B 预览端</span> 用课程发送端对已核指纹加密并发送一组零速预览样例。B 只观察预览话题，确认字段回读为全零。</p><p>预览未归零、发送回执超时或数据进入非预览主题：停止发送，不开始非零样例。</p></li>
+    <li><h3>发送有限的短样例并比对</h3><p><span class="role-tag">A 的 ROS1 容器；B 预览端</span> A 输入已与 B 核对的完整公钥指纹，然后启动课程发送器：</p><pre><code>read -r -p '输入已核对的完整公钥 SHA256: ' KEY_FP
+python3 /lab8/工具/lab8_ros.py teleop \
+  --public-key ~/lab8_remote_key/public.pem \
+  --fingerprint "$KEY_FP"</code></pre><p>该终端需要交互键盘，不要接 <code>tee</code> 管道。仅在预览模式下短按一次 w、松开并按空格归零，再短按一次 a 并归零；B 每次都应显示与该输入相符的预览字段。按 q 正常退出发送器。不要把预览值用于底盘控制。</p><p>解密值与输入不符、数据缺失或发生意外运动：立即停止发送，保持车辆静止，保留日志与 PCAP。</p></li>
+    <li><h3>检查异常密文与断流归零</h3><p><span class="role-tag">A / B</span> 仅使用课程提供的本地测试样本验证异常密文被拒绝且预览归零；随后按课程样例停止发送，观察断流保护是否在规定时间归零。不要自行构造可能送到底盘的输入。</p><p>异常密文导致非零预览、断流后仍保留非零值或超时：停止实验；不关闭校验继续。</p></li>
+    <li><h3>结束发送、接收和抓包</h3><p><span class="role-tag">A → B → M</span> A 发送端先正常退出；B 确认预览值为零后停止接收器；A 停止一次性公钥服务；最后正常结束抓包并保存 captured/received/dropped 统计。</p><p>任一节点退出状态不明：逐项核对本轮进程，不全局结束 ROS，不删密钥目录。</p></li>
+    <li><h3>封存证据并检查泄露</h3><p><span class="role-tag">A / B / M</span> 保存两端公钥指纹、源码/工具版本、服务回执、预览日志、异常/断流记录、PCAP 和 SHA-256。归档前检查证据中没有私钥内容、账号口令、私钥路径之外的秘密或未经脱敏的真实地址。</p><p>发现私钥被复制到证据目录：停止发布/共享，按本机密钥管理要求处理；不要把包含私钥的归档上传到课程站点。</p></li>
+  </ol>
+</section>
+<section id="check"><h2>检查与证据</h2><p>检查顺序：A/B 公钥指纹相同 → ROS 服务与话题类型正确 → B 只发布预览 → 零值和有限样例能正确解密 → 异常密文与断流时归零 → 抓包帧可与 ROS 日志对应 → 所有进程退出、预览归零。逐项记录本轮实际输出；本章预览流程不验证底盘运动。</p></section>
+<section id="troubleshoot"><h2>常见问题</h2><ul><li><code>No module named Crypto</code>：核实运行 rospy 的同一个解释器与固定 vendor 路径；不安装不明同名包。</li><li>ROS 服务类型找不到：确认独立工作区构建和新终端 source 顺序；不另起 master。</li><li>指纹不匹配：立即停止发送，确认 B 当前公钥与 A 接收目录；不覆盖私钥。</li><li>PCAP 未看到完整密文：检查抓包接口、ROS 主题和单播路径；抓包缺失不等于加密失败。</li><li>预览不归零或意外接到底盘：停止发送、实体停车，保留证据；不切换运动主题或放宽校验。</li></ul></section>
+<section id="finish"><h2>收尾</h2><p>停止顺序：A 发送端退出 → B 预览确认零并停止接收器 → A 公钥服务退出 → 抓包正常结束 → 核查无本轮进程及意外发布者 → 归档公钥指纹、日志和哈希。私钥留在 B 本机受限目录，绝不加入网站、截图或资料包。保留原 ROS master 和其他组共享进程。</p></section>
+<section id="evidence"><h2>本章证据范围</h2><p>独立预览演示不等于底盘控制。RSA 加密不提供发送者认证或防重放；人工指纹核对是本轮公钥核验，不是完整链路安全保证。现场实车预览、离线 loopback 与离线示例应分开标注。</p></section>
+</article>
+<nav class="chapter-pagination" aria-label="章节切换"><a href="lab-07.html"><span>上一章</span>实验七｜有限 SYN 探测</a><a href="lab-09.html"><span>下一章</span>实验九｜视觉识别</a></nav></main></div>
+<footer class="site-footer"><a href="index.html">机器人与安全实验指导首页</a><span>课程实验操作指南</span></footer></body></html>

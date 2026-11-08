@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light"><meta name="description" content="机器人与安全课程的实验操作、检查点与排错指导。"><title>机器人与安全实验指导</title><link rel="stylesheet" href="assets/site.css"><script src="assets/site.js" defer></script></head>
+<body class="home-page"><a class="skip-link" href="#experiment-list">跳到实验目录</a><header class="site-header"><a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">R</span><span>机器人与安全<span class="brand-sub">实验指导 · 网页版</span></span></a><div class="header-meta"><span>实验零至十一</span><a href="lab-00.html">准备环境</a></div></header><main class="home-main">
+  <section class="welcome" aria-labelledby="welcome-title">
+    <div class="welcome-copy">
+      <p class="eyebrow">机器人与安全 · 实验操作指南</p>
+      <h1 id="welcome-title">从环境准备，走到可核对的实验结果。</h1>
+      <p class="welcome-note">本网站可供没有拿到课程Ubuntu以及没有ROS1的同学使用，也欢迎各位参与资料的补充</p>
+      <div class="welcome-actions">
+        <a class="button button-primary" href="lab-00.html">从实验零开始</a>
+        <a class="text-link" href="#experiment-list">按编号找实验</a>
+      </div>
+    </div>
+    <div class="bench-figure" aria-label="控制机、网络与机器人之间的离线实验连接示意图">
+      <svg viewBox="0 0 560 300" role="img" aria-labelledby="bench-title bench-desc">
+        <title id="bench-title">实验台连接示意</title><desc id="bench-desc">控制机 A 通过实验网络与中间机 M 和机器人 B 连接；仿真与实体实验分开标识。</desc>
+        <path class="wire" d="M102 126H250M310 126H458M280 154v64"/>
+        <path class="wire wire-dash" d="M102 178H228M332 178h126"/>
+        <circle class="port" cx="102" cy="126" r="5"/><circle class="port" cx="458" cy="126" r="5"/>
+        <rect class="device" x="42" y="70" width="120" height="108" rx="5"/><rect class="screen" x="55" y="84" width="94" height="64" rx="2"/>
+        <path class="screen-line" d="M67 128l15-22 13 13 15-18 24 27"/><path class="device-foot" d="M82 178v12h40v-12"/>
+        <rect class="device device-m" x="220" y="76" width="120" height="100" rx="5"/><circle class="knob" cx="280" cy="126" r="23"/><path class="knob-line" d="M280 111v15l12 8"/>
+        <path class="robot" d="M405 101h106l16 16v51H389v-51z"/><circle class="wheel" cx="418" cy="173" r="13"/><circle class="wheel" cx="493" cy="173" r="13"/><circle class="sensor" cx="450" cy="117" r="10"/>
+        <path class="simline" d="M240 228h80m-70-10v20m20-20v20m20-20v20m20-20v20"/>
+        <text x="102" y="215" text-anchor="middle">控制机 A</text><text x="280" y="215" text-anchor="middle">隔离实验网络</text><text x="458" y="215" text-anchor="middle">机器人 B</text>
+        <text class="small-label" x="280" y="267" text-anchor="middle">先在仿真与离线检查中确认，再按章节要求连接实车</text>
+      </svg>
+    </div>
+  </section>
+
+  <section class="start-grid" aria-label="选择你的起点">
+    <article class="start-route start-route-primary"><span class="route-number">A</span><div><h2>第一次使用</h2><p>先读实验零：虚拟机、实验角色、网络切换和现场停车。</p></div><a href="lab-00.html">打开准备指南</a></article>
+    <article class="start-route"><span class="route-number route-number-light">仿</span><div><h2>先做仿真</h2><p>从实验一开始；每章都标出终端位置和可核对的检查点。</p></div><a href="lab-01.html">进入实验一</a></article>
+    <article class="start-route"><span class="route-number route-number-light">场</span><div><h2>已到实验室</h2><p>先核实当天网络、设备地址、操作者分工和停车方式。</p></div><a href="lab-00.html#check">查看现场核验</a></article>
+  </section>
+
+  <section class="course-index" id="experiment-list" aria-labelledby="list-title">
+    <div class="section-heading"><div><p class="eyebrow">课程索引</p><h2 id="list-title">选择一项实验</h2></div><label class="search-box">按标题或主题查找<input id="course-search" type="search" placeholder="例如：导航、抓包、视觉" autocomplete="off" aria-describedby="search-help"></label></div>
+    <p class="search-help" id="search-help" aria-live="polite">搜索只筛实验名称和主题；清空后显示完整目录。</p>
+    <noscript><p class="callout">浏览器脚本已关闭。完整实验目录仍可直接打开和阅读。</p></noscript>
+    <ol class="experiment-list" id="experiment-list-items">
+      <li data-search="实验零 先准备环境 VMware Ubuntu ROS1 容器 网络安全收尾"><a href="lab-00.html"><span class="list-index">00</span><span><strong>实验零｜先准备环境</strong><small>VMware、Ubuntu、ROS1 容器、网络与安全收尾</small></span><span class="list-kind">开始前</span></a></li>
+      <li data-search="实验一 ROS 基础 TurtleSim 节点 话题 服务 消息 仿真"><a href="lab-01.html"><span class="list-index">01</span><span><strong>实验一｜ROS 基础与 TurtleSim</strong><small>节点、话题、服务、消息与仿真编程</small></span><span class="list-kind">仿真</span></a></li>
+      <li data-search="实验二 连接 遥控 主机 小车 网络 低速"><a href="lab-02.html"><span class="list-index">02</span><span><strong>实验二｜连接与遥控</strong><small>主机、小车、网络连通与低速遥控</small></span><span class="list-kind">连接</span></a></li>
+      <li data-search="实验三 SLAM 导航 建图 定位 目标"><a href="lab-03.html"><span class="list-index">03</span><span><strong>实验三｜SLAM 与导航</strong><small>建图、定位、目标导航与结果判读</small></span><span class="list-kind">移动机器人</span></a></li>
+      <li data-search="实验四 循线 跟踪 图像 Gazebo 实车 选做"><a href="lab-04.html"><span class="list-index">04</span><span><strong>实验四｜循线跟踪（选做）</strong><small>图像处理、仿真循线与实车边界</small></span><span class="list-kind">选做</span></a></li>
+      <li data-search="实验五 ARP 抓包 网络 隔离"><a href="lab-05.html"><span class="list-index">05</span><span><strong>实验五｜ARP 实验</strong><small>隔离网络、抓包观察与恢复验证</small></span><span class="list-kind">网络安全</span></a></li>
+      <li data-search="实验六 中间人 转发 速度改写 停车"><a href="lab-06.html"><span class="list-index">06</span><span><strong>实验六｜中间人实验</strong><small>受限转发、速度改写与停车保护</small></span><span class="list-kind">网络安全</span></a></li>
+      <li data-search="实验七 SYN 探测 DoS 服务 对照"><a href="lab-07.html"><span class="list-index">07</span><span><strong>实验七｜有限 SYN 探测</strong><small>隔离靶场、服务对照与流量边界</small></span><span class="list-kind">隔离靶场</span></a></li>
+      <li data-search="实验八 RSA 加密 通信 选做"><a href="lab-08.html"><span class="list-index">08</span><span><strong>实验八｜RSA 通信</strong><small>加密通信、异常处理与零速收尾</small></span><span class="list-kind">选做</span></a></li>
+      <li data-search="实验九 视觉识别 图片 自编识别器"><a href="lab-09.html"><span class="list-index">09</span><span><strong>实验九｜视觉识别</strong><small>自编识别流程、输入质量与验证范围</small></span><span class="list-kind">视觉</span></a></li>
+      <li data-search="实验十 SSH 口令 字典 隔离 防护"><a href="lab-10.html"><span class="list-index">10</span><span><strong>实验十｜SSH 口令安全</strong><small>虚构数据、隔离靶机与防护观察</small></span><span class="list-kind">隔离靶场</span></a></li>
+      <li data-search="实验十一 多机 编队 仿真 静态定位 选做"><a href="lab-11.html"><span class="list-index">11</span><span><strong>实验十一｜多机编队</strong><small>仿真编队与静态定位证据</small></span><span class="list-kind">选做</span></a></li>
+    </ol>
+    <p class="empty-search" id="empty-search" hidden>没有找到匹配的实验。换一个标题或主题词，或清空搜索框显示全部实验。</p>
+  </section>
+  <footer class="home-footer"><p>第一次做实验，从实验零打开 Ubuntu 控制机、设置登录密码，再做实验一的 TurtleSim 仿真。</p><p>虚拟机与实验文件随课程资料分发。各章准备部分列出所需设备、软件和文件。</p></footer>
+</main><footer class="site-footer"><span>实验零至十一 · 操作、检查与排错</span><a href="lab-00.html">打开实验零</a></footer></body></html>

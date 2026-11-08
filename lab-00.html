@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light"><title>实验零｜先准备环境 · 机器人与安全实验指导</title><link rel="stylesheet" href="assets/site.css"><script src="assets/site.js" defer></script></head>
+<body class="chapter-page"><a class="skip-link" href="#main-content">跳到正文</a>
+<header class="site-header"><a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">R</span><span>机器人与安全<span class="brand-sub">实验指导 · 网页版</span></span></a><div class="header-meta"><span>实验 00 / 11</span><a href="index.html">回到首页</a></div></header>
+<div class="chapter-layout"><aside class="chapter-aside"><details class="mobile-toc"><summary>打开实验目录</summary><nav aria-label="实验目录"><ol class="chapter-list"><li><a href="lab-00.html" aria-current="page">00 <span>先准备环境</span></a></li>
+<li><a href="lab-01.html">01 <span>ROS 基础与 TurtleSim</span></a></li>
+<li><a href="lab-02.html">02 <span>连接与遥控</span></a></li>
+<li><a href="lab-03.html">03 <span>SLAM 与导航</span></a></li>
+<li><a href="lab-04.html">04 <span>循线跟踪（选做）</span></a></li>
+<li><a href="lab-05.html">05 <span>ARP 实验</span></a></li>
+<li><a href="lab-06.html">06 <span>中间人实验</span></a></li>
+<li><a href="lab-07.html">07 <span>有限 SYN 探测</span></a></li>
+<li><a href="lab-08.html">08 <span>RSA 通信（选做）</span></a></li>
+<li><a href="lab-09.html">09 <span>视觉识别</span></a></li>
+<li><a href="lab-10.html">10 <span>SSH 口令安全（隔离）</span></a></li>
+<li><a href="lab-11.html">11 <span>多机编队（选做）</span></a></li></ol></nav></details><nav class="desktop-toc" aria-label="实验目录"><p class="aside-title">实验目录</p><ol class="chapter-list"><li><a href="lab-00.html" aria-current="page">00 <span>先准备环境</span></a></li>
+<li><a href="lab-01.html">01 <span>ROS 基础与 TurtleSim</span></a></li>
+<li><a href="lab-02.html">02 <span>连接与遥控</span></a></li>
+<li><a href="lab-03.html">03 <span>SLAM 与导航</span></a></li>
+<li><a href="lab-04.html">04 <span>循线跟踪（选做）</span></a></li>
+<li><a href="lab-05.html">05 <span>ARP 实验</span></a></li>
+<li><a href="lab-06.html">06 <span>中间人实验</span></a></li>
+<li><a href="lab-07.html">07 <span>有限 SYN 探测</span></a></li>
+<li><a href="lab-08.html">08 <span>RSA 通信（选做）</span></a></li>
+<li><a href="lab-09.html">09 <span>视觉识别</span></a></li>
+<li><a href="lab-10.html">10 <span>SSH 口令安全（隔离）</span></a></li>
+<li><a href="lab-11.html">11 <span>多机编队（选做）</span></a></li></ol></nav><nav class="page-toc" aria-label="本页内容"><p class="aside-title">本页内容</p><ol><li><a href="#goal">目标：先弄清你手里有什么</a></li>
+<li><a href="#prepare">准备：选一条环境路线</a></li>
+<li><a href="#steps">操作步骤：从个人电脑到实验台</a></li>
+<li><a href="#check">检查点：确认路线、网络和实验条件</a></li>
+<li><a href="#troubleshoot">常见问题：先定位在哪一层</a></li>
+<li><a href="#finish">收尾与留证：先停稳，再还原</a></li></ol></nav></aside>
+<main class="chapter-main" id="main-content"><div class="chapter-heading"><div><p class="eyebrow">实验 00 · VMware、Ubuntu、ROS1 容器、网络与安全收尾</p><h1>实验零｜先准备环境</h1></div><a class="print-link" href="#" data-print>打印本章</a></div><article class="prose"><section id="goal"><h2>目标：先认清环境与边界</h2><p>本网站与同一交付目录中的完整 Ubuntu 虚拟机和“实验文件”配套使用。虚拟机文件夹名为 <code>Ubuntu-A</code> 与 <code>Ubuntu-M</code>，课程资料在旁边的 <code>实验文件</code> 文件夹。A 是控制机（Ubuntu 24.04 LTS、XFCE、Noetic Docker），M 是中间机（Ubuntu 24.04 LTS、XFCE 和网络工具）。每台 VM 都是独立虚拟机目录，需保留配置和全部虚拟磁盘。</p><p class="callout"><strong>继续条件：</strong><code>Ubuntu-A</code>、<code>Ubuntu-M</code> 和 <code>实验文件</code> 均已完整解压，VMX 能找到所引用的虚拟磁盘；课程材料路径已按清单核对。缺件或校验不符时先停下核对来源。</p></section>
+<section id="prepare"><h2>准备：选择实际可用的路线</h2><p><strong>路线 A：使用交付的完整虚拟机。</strong>A 控制机位于 <code>Ubuntu-A</code>（VMX：<code>Ubuntu-A.vmx</code>），M 中间机位于 <code>Ubuntu-M</code>（VMX：<code>Ubuntu-M.vmx</code>）；课程资料在同级 <code>实验文件</code> 文件夹。A 使用 Ubuntu 24.04 LTS/XFCE 与 ROS 1 Noetic Docker；M 使用 Ubuntu 24.04 LTS/XFCE 与网络工具。每台 VMX 引用的全部 VMDK、分卷磁盘和配置文件都要保留在原文件夹结构中。</p><p><strong>路线 B：先阅读。</strong>尚未解压或导入虚拟机时，可以先阅读流程；文件齐备后再运行命令。</p><div class="callout callout-muted"><strong>环境层次：</strong>Windows 是宿主；Ubuntu 是虚拟机桌面；Docker 容器提供 ROS；小车是独立设备。容器不等于虚拟机，小车 Wi-Fi 不保证能上互联网。</div><h3>获取并安装 VMware Workstation Pro</h3><p>如果电脑尚未安装 Workstation Pro，使用 <a href="https://support.broadcom.com">Broadcom Support Portal</a> 登录，在 My Downloads / Free Software Downloads 中选择适用于 Windows 的 VMware Workstation Pro，并按页面要求确认条款后下载。Broadcom 官方说明：个人使用安装时选择 Personal Use，不需要从第三方获取许可证密钥；版本和界面以下载页及安装向导当前显示为准。参考：<a href="https://knowledge.broadcom.com/external/article/344595">下载说明</a>、<a href="https://knowledge.broadcom.com/external/article/387947">Windows 安装说明</a>、<a href="https://knowledge.broadcom.com/external/article/368667">许可说明</a>。下载的安装程序按官方安装向导完成安装，随后从开始菜单打开 VMware Workstation Pro。</p><p>以下导入步骤从已安装并打开 VMware Workstation Pro 开始。示例针对交付清单中的独立 VMX 文件夹；若实际交付格式不同，按清单处理，不自行猜转换方式。</p></section>
+<section id="steps"><h2>操作步骤：从个人电脑到实验台</h2><p class="callout"><strong>导入前先检查：</strong>在 Windows 文件资源管理器中完整解压交付包到有足够空间、路径稳定的位置。打开共享交付目录，应能看到 <code>Ubuntu-A</code>、<code>Ubuntu-M</code> 和同级 <code>实验文件</code>。A 文件夹内为 <code>Ubuntu-A.vmx</code>，M 文件夹内为 <code>Ubuntu-M.vmx</code>；各自引用的全部 <code>.vmdk</code> 磁盘及分卷文件都要在位。保留目录结构，不移动或重命名 VMX/VMDK，并按交付清单核对完整性。缺件或校验不符时不要导入。</p><ol class="walkthrough">
+<li><h3>打开 VMware Workstation Pro</h3><p><span class="role-tag">Windows / VMware Workstation Pro</span>从 Windows“开始”菜单搜索并打开 VMware Workstation Pro，等待主界面和左侧虚拟机库出现。若尚未安装，先按上方官方渠道说明完成安装。</p><p class="checkpoint"><strong>继续：</strong>看到 Workstation 主界面；VMware 还未开启任何虚拟机。</p></li>
+<li><h3>从 VMware 主界面打开 VMX</h3><p><span class="role-tag">Windows / VMware Workstation Pro</span>在主界面点“文件 → 打开”（也可按 Ctrl+O）；在文件选择窗口进入 <code>Ubuntu-A</code> 文件夹，选中 <code>Ubuntu-A.vmx</code> 并点“打开”，在左侧库中确认 A 出现。再点“文件 → 打开”，进入 <code>Ubuntu-M</code>，选中 <code>Ubuntu-M.vmx</code> 并打开。若 VMware 询问该 VM 是已移动还是已复制，选择「我已复制」，让 VMware 为你的副本生成独立标识。</p><p class="checkpoint"><strong>继续：</strong>A、M 都出现在 VMware 库中；点选各台虚拟机时没有“找不到磁盘”提示。遇到文件缺失、转换或兼容性提示，先保存提示原文并停下核对。</p></li><li><h3>首次启动前选择网卡模式</h3><p><span class="role-tag">Windows / VMware Workstation Pro</span>先在库中选中虚拟机，点“虚拟机 → 设置 → 网络适配器”。两台 VM 首次启动前均保持断网：取消“已连接”和“启动时连接”，然后点“确定”。需要让 Ubuntu 通过宿主机上网时，再选“NAT”并勾选“启动时连接”。</p><p class="checkpoint"><strong>继续：</strong>首次启动采用断网模式；NAT 用于一般互联网访问，不用于连接需在同一局域网的小车。</p></li>
+<li><h3>首次启动并设置自己的登录密码</h3><p><span class="role-tag">Ubuntu-A / Ubuntu-M</span>确认该 VM 的网络适配器仍为断开，再点 VMware“开启此虚拟机”。首次进入 Ubuntu 24.04 LTS/XFCE 桌面会自动登录 <code>student</code>。打开 Ubuntu 终端，运行下列命令，按提示设置自己使用的密码：</p><pre><code>sudo robotics-set-password</code></pre><p>完成后重启虚拟机；下次启动时使用自己设置的密码登录。交付中没有预设密码，不要向他人索取或把密码写入共享记录。A、M 分别设置各自密码。</p><p class="checkpoint"><strong>继续：</strong>两台 VM 均能使用新设置的密码正常登录；首次设置密码时保持网卡断开。</p></li>
+<li><h3>打开 Ubuntu 本地终端</h3><p><span class="role-tag">Ubuntu 本地终端</span>按 Ctrl+Alt+T 或从应用菜单打开“终端”。这里不是 PowerShell、SSH 小车窗口或容器 shell。</p><p class="checkpoint"><strong>继续：</strong>出现 Ubuntu shell 提示符。</p><figure class="lesson-figure"><img src="assets/guide/environment.svg" alt="命令要在哪一层运行？。Windows 宿主机，打开 VMware，检查虚拟机网卡与导入位置。；Ubuntu 虚拟机 A，配置网络，打开 Ubuntu 终端，启动课程环境。；ROS1 容器 shell，确认 Noetic 后再运行 rostopic 等 ROS1 命令。" loading="lazy"><figcaption>操作示意｜新开终端后先认清当前所在层。实验一只做本机仿真。</figcaption></figure></li>
+<li><h3>确认课程目录与配套资料</h3><p><span class="role-tag">Ubuntu-A 本地终端</span>A 控制机已包含 ROS 1 Noetic Docker，预置了 <code>~/robot_labs</code> 和 <code>~/lab4_prep/工具</code>。打开终端，确认目录存在：</p><pre><code>ls ~/robot_labs
+ls ~/lab4_prep/工具</code></pre><p>其余说明和配套资料位于交付目录中的 <code>实验文件</code>；对照该目录清单使用对应版本，不要覆盖预置目录。实验四 Gazebo 镜像是否就绪，查看交付根目录 <code>开工说明.md</code> 的“各实验能从哪里开始”表。</p><p class="checkpoint"><strong>继续：</strong>两个目录存在，文件和版本符合交付清单；缺项时先按配套准备说明处理。</p></li>
+<li><h3>区分首次安装和日常使用</h3><p><span class="role-tag">Ubuntu 本地终端</span>A 的 Noetic Docker 和课程环境已随交付准备；M 含对应网络工具。按章节说明进行软件自检。没有要求安装或更新时，不重复构建或重新安装。</p><p class="checkpoint"><strong>继续：</strong>A、M 的环境检查按各章指定命令执行；失败时先查配套说明。</p></li>
+<li><h3>认识 A、M、B 角色</h3><p><span class="role-tag">全组成员</span>A 是 ROS 控制机，M 是指定安全实验的中间机，B 是实体机器人。先约定操作者、看车者和记录者。</p><p class="checkpoint"><strong>继续：</strong>每人知道设备归属和控制权。</p></li>
+
+<li><h3>按现场网络将 VMnet0 绑定到实体网卡</h3><p><span class="role-tag">Windows / VMware Workstation Pro</span>仅在章节要求控制机加入现场局域网时操作。打开“编辑 → 虚拟网络编辑器”，选 VMnet0，将“桥接到”从自动改为当天实际承载现场网络的物理 WLAN 或 Ethernet 网卡，点“应用”。回到目标虚拟机的“虚拟机 → 设置 → 网络适配器”，选择“自定义：特定虚拟网络”并选 VMnet0；再按现场操作单勾选“已连接”“启动时连接”。不要把 VMnet0 留在自动桥接，也不要照抄历史网卡名称。</p><p class="checkpoint"><strong>继续：</strong>VMnet0 明确绑定当天正确的物理网卡，VM 设置指向 VMnet0；进入 Ubuntu 后再核对接口、IPv4 和路由。</p></li>
+<li><h3>查看接口和路由</h3><p><span class="role-tag">Ubuntu 本地终端</span>运行：</p><pre><code>ip -br -4 addr
+ip -4 route</code></pre><p>记录当下接口和地址，不要用 Windows、Docker 或历史地址替代。</p><p class="checkpoint"><strong>继续：</strong>桥接场景有现场网接口和合理路由；否则回查 WLAN/VMware。</p></li>
+<li><h3>确认实验对象与停车方式</h3><p><span class="role-tag">实验现场</span>核对本组设备、型号、场地、电源、急停/断电方式和看车同伴；车辆起步时保持静止。</p><p class="checkpoint"><strong>继续：</strong>设备归属和停车方式明确。</p></li>
+<li><h3>按章节做前置检查</h3><p><span class="role-tag">章节指定终端</span>分清软件、网络和传感器检查，等待完整输出。话题名、ping 或进程存在都不能替代数据新鲜度。</p><p class="checkpoint"><strong>继续：</strong>本章全部前置项通过；失败时留原文并停止推进。</p></li>
+<li><h3>建立本轮证据目录</h3><p><span class="role-tag">Ubuntu / 记录者</span>按套件建立独立轮次，保存日志、截图、视频、地图等，标记实验号、日期轮次、角色和仿真/隔离/实车场景。</p><p class="checkpoint"><strong>继续：</strong>不会覆盖上一轮；凭据不放入公开记录。</p></li>
+<li><h3>故障时逐项排查</h3><p><span class="role-tag">操作者</span>保存错误原文、时间和当前窗口，按章节顺序一次检查一个问题。不要同时改网络、时间、驱动和参数。</p><p class="checkpoint"><strong>继续：</strong>修复后重过相应检查；仍失败就停下保留材料。</p></li>
+<li><h3>结束、停车、记录恢复状态</h3><p><span class="role-tag">操作者 / 看车者</span>按章节取消目标或结束发布程序，目视确认实体车停稳；保存原始证据，记下网络与共享服务状态。</p><p class="checkpoint"><strong>收尾：</strong>设备安全、证据可回查、无遗留控制者。</p></li>
+</ol></section>
+<section id="check"><h2>检查点</h2><ul><li>按清单导入 A、M 独立 VM 文件夹，文件校验/磁盘引用符合交付说明。</li><li>能区分 Windows、Ubuntu、容器 shell 和小车 SSH。</li><li>到场重新检查 Wi-Fi、桥接、Ubuntu 地址和路由。</li><li>实体实验有看车者、可用停车方式和唯一控制者。</li><li>仿真、隔离、实车材料分开保存。</li></ul><p class="checkpoint"><strong>停止条件：</strong>设备、地址、ROS 版本、时间戳、控制权或停车方式不清楚。</p></section>
+<section id="troubleshoot"><h2>常见问题</h2><h3>VMware 提示缺少磁盘</h3><p>不要浏览到另一台 VM 的磁盘，也不要改写 VMX 路径。关闭提示，回到对应文件夹核对 VMX 引用的 VMDK、分卷和文件名，再按交付清单检查校验值。</p><h3>Windows 有网但 Ubuntu 找不到车</h3><p>核对桥接、无线网卡、Ubuntu 接口和目标路由。容器共享 Ubuntu 网络，不会自动修复桥接。</p><h3>首次登录后没有密码</h3><p>首次启动按提示进入自动登录桌面后，在 Ubuntu 终端运行 <code>sudo robotics-set-password</code> 并自行设定密码，然后重启。不要从网络教程查找或复制所谓默认密码。</p><h3>ROS 命令不存在</h3><p>确认窗口和 ROS 版本。Noetic 命令在课程容器中运行；不要在 Jazzy 宿主机随意安装 ROS 1 包。</p><h3>话题可见但检查失败</h3><p>保存输出并检查最近收包、header 时间戳和 TF；消息数量增加不代表数据新鲜或坐标变换完整。</p></section>
+<section id="finish"><h2>收尾</h2><ol><li>结束速度发布、遥控或导航，目视确认实体车停稳。</li><li>保存日志、地图、截图或录像并标明场景。</li><li>不停止其他组使用的 master、驱动或共享虚拟机。</li><li>记录网络和设备状态，只清理本轮产生的临时文件。</li></ol></section>
+</article>
+<nav class="chapter-pagination" aria-label="章节切换"><a href="index.html"><span>回到首页</span>选择阅读路径</a><a href="lab-01.html"><span>下一章</span>实验一｜ROS 基础与 TurtleSim</a></nav></main></div>
+<footer class="site-footer"><a href="index.html">机器人与安全实验指导首页</a><span>课程实验操作指南</span></footer></body></html>
