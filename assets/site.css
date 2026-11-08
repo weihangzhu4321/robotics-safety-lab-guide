@@ -37,11 +37,15 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
 .welcome { position: relative; display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(320px, .88fr); align-items: center; gap: clamp(1.5rem, 5vw, 4rem); min-height: 380px; padding: 3.5rem 0 3rem; border-bottom: 1px solid var(--line); }
 .eyebrow { margin: 0 0 .8rem; color: var(--teal); font-size: .82rem; font-weight: 700; }
 .welcome h1 { max-width: 670px; margin: 0; color: var(--navy-deep); font-size: clamp(2rem, 4.6vw, 3.8rem); line-height: 1.22; letter-spacing: -.035em; }
+.welcome h1 span { display: inline-block; }
 .welcome-note { max-width: 700px; margin: 1.3rem 0 0; padding: .7rem 0 .7rem 1rem; border-left: 4px solid var(--orange); color: #263E4F; font-size: 1.03rem; line-height: 1.65; }
-.welcome-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1.35rem; margin-top: 1.8rem; }
+.welcome-guide { max-width: 36em; margin: 1rem 0 0; color: var(--muted); }
+.welcome-actions { display: flex; flex-wrap: wrap; align-items: center; gap: .8rem; margin-top: 1.15rem; }
 .button { display: inline-flex; align-items: center; min-height: 46px; padding: .62rem 1rem; text-decoration: none; font-weight: 700; }
 .button-primary { color: var(--white); background: var(--navy); border: 1px solid var(--navy); }
 .button-primary:hover { color: white; background: var(--navy-deep); }
+.button-secondary { color: var(--navy); border: 1px solid #9DB1BF; background: var(--white); }
+.button-secondary:hover { color: var(--navy-deep); background: #DCE9EE; }
 .text-link { font-weight: 700; }
 .bench-figure { min-width: 0; padding: .8rem 0; }
 .bench-figure svg { display: block; width: 100%; height: auto; max-height: 300px; overflow: visible; }

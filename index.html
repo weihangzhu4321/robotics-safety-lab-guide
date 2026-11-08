@@ -1,14 +1,14 @@
 <!doctype html>
 <html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light"><meta name="description" content="机器人与安全课程的实验操作、检查点与排错指导。"><title>机器人与安全实验指导</title><link rel="stylesheet" href="assets/site.css"><script src="assets/site.js" defer></script></head>
-<body class="home-page"><a class="skip-link" href="#experiment-list">跳到实验目录</a><header class="site-header"><a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">R</span><span>机器人与安全<span class="brand-sub">实验指导 · 网页版</span></span></a><div class="header-meta"><span>实验零至十一</span><a href="lab-00.html">准备环境</a></div></header><main class="home-main">
+<body class="home-page"><a class="skip-link" href="#experiment-list">跳到实验目录</a><header class="site-header"><a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">R</span><span>机器人与安全<span class="brand-sub">实验指导 · 网页版</span></span></a><nav class="header-meta" aria-label="首页导航"><a href="#experiment-list">实验目录</a></nav></header><main class="home-main">
   <section class="welcome" aria-labelledby="welcome-title">
     <div class="welcome-copy">
-      <p class="eyebrow">机器人与安全 · 实验操作指南</p>
-      <h1 id="welcome-title">从环境准备，走到可核对的实验结果。</h1>
+      <h1 id="welcome-title">机器人与安全<span>实验操作指南</span></h1>
       <p class="welcome-note">本网站可供没有拿到课程Ubuntu以及没有ROS1的同学使用，也欢迎各位参与资料的补充</p>
+      <p class="welcome-guide">第一次做实验，从实验零打开 Ubuntu 虚拟机、配置网卡。已经配好环境的同学可以直接选实验。</p>
       <div class="welcome-actions">
         <a class="button button-primary" href="lab-00.html">从实验零开始</a>
-        <a class="text-link" href="#experiment-list">按编号找实验</a>
+        <a class="button button-secondary" href="#experiment-list">查看实验目录</a>
       </div>
     </div>
     <div class="bench-figure" aria-label="控制机、网络与机器人之间的离线实验连接示意图">
@@ -29,13 +29,13 @@
   </section>
 
   <section class="start-grid" aria-label="选择你的起点">
-    <article class="start-route start-route-primary"><span class="route-number">A</span><div><h2>第一次使用</h2><p>先读实验零：虚拟机、实验角色、网络切换和现场停车。</p></div><a href="lab-00.html">打开准备指南</a></article>
+    <article class="start-route start-route-primary"><span class="route-number">A</span><div><h2>还没打开虚拟机</h2><p>按 VMware 主界面里的菜单，打开 Ubuntu 控制机并设置登录密码。</p></div><a href="lab-00.html#steps">查看虚拟机导入步骤</a></article>
     <article class="start-route"><span class="route-number route-number-light">仿</span><div><h2>先做仿真</h2><p>从实验一开始；每章都标出终端位置和可核对的检查点。</p></div><a href="lab-01.html">进入实验一</a></article>
     <article class="start-route"><span class="route-number route-number-light">场</span><div><h2>已到实验室</h2><p>先核实当天网络、设备地址、操作者分工和停车方式。</p></div><a href="lab-00.html#check">查看现场核验</a></article>
   </section>
 
   <section class="course-index" id="experiment-list" aria-labelledby="list-title">
-    <div class="section-heading"><div><p class="eyebrow">课程索引</p><h2 id="list-title">选择一项实验</h2></div><label class="search-box">按标题或主题查找<input id="course-search" type="search" placeholder="例如：导航、抓包、视觉" autocomplete="off" aria-describedby="search-help"></label></div>
+    <div class="section-heading"><div><h2 id="list-title">实验目录</h2></div><label class="search-box">按标题或主题查找<input id="course-search" type="search" placeholder="例如：导航、抓包、视觉" autocomplete="off" aria-describedby="search-help"></label></div>
     <p class="search-help" id="search-help" aria-live="polite">搜索只筛实验名称和主题；清空后显示完整目录。</p>
     <noscript><p class="callout">浏览器脚本已关闭。完整实验目录仍可直接打开和阅读。</p></noscript>
     <ol class="experiment-list" id="experiment-list-items">
