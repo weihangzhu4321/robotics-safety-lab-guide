@@ -1,0 +1,1970 @@
+<?xml version='1.0' encoding='utf-8'?>
+<sdf version="1.6">
+  <world name="lab4_prep_ring">
+    <gravity>0 0 -9.81</gravity>
+    <physics name="default_physics" type="ode">
+      <real_time_update_rate>1000</real_time_update_rate>
+      <max_step_size>0.001</max_step_size>
+    </physics>
+    <scene>
+      <ambient>0.65 0.65 0.65 1</ambient>
+      <background>0.8 0.85 0.9 1</background>
+    </scene>
+    <light name="prep_sun" type="directional">
+      <pose>0 0 10 0 0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.1 0.1 0.1 1</specular>
+      <direction>-0.5 -0.2 -1</direction>
+    </light>
+    <model name="prep_floor">
+      <static>true</static>
+      <link name="floor">
+        <collision name="collision">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>10 10</size>
+            </plane>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>10 10</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>0.9 0.9 0.9 1</ambient>
+            <diffuse>0.9 0.9 0.9 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="prep_yellow_ring">
+      <static>true</static>
+      <link name="line">
+        <visual name="yellow_0">
+          <pose>1.80000000 0.00000000 0.002 0 0 1.57079633</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_1">
+          <pose>1.79861227 0.07066767 0.002 0 0 1.61006623</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_2">
+          <pose>1.79445120 0.14122637 0.002 0 0 1.64933614</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_3">
+          <pose>1.78752322 0.21156732 0.002 0 0 1.68860605</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_4">
+          <pose>1.77783901 0.28158204 0.002 0 0 1.72787596</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_5">
+          <pose>1.76541350 0.35116258 0.002 0 0 1.76714587</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_6">
+          <pose>1.75026586 0.42020165 0.002 0 0 1.80641578</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_7">
+          <pose>1.73241943 0.48859281 0.002 0 0 1.84568568</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_8">
+          <pose>1.71190173 0.55623059 0.002 0 0 1.88495559</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_9">
+          <pose>1.68874440 0.62301070 0.002 0 0 1.92422550</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_10">
+          <pose>1.66298316 0.68883018 0.002 0 0 1.96349541</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_11">
+          <pose>1.63465771 0.75358753 0.002 0 0 2.00276532</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_12">
+          <pose>1.60381174 0.81718290 0.002 0 0 2.04203522</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_13">
+          <pose>1.57049281 0.87951823 0.002 0 0 2.08130513</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_14">
+          <pose>1.53475230 0.94049742 0.002 0 0 2.12057504</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_15">
+          <pose>1.49664530 1.00002642 0.002 0 0 2.15984495</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_16">
+          <pose>1.45623059 1.05801345 0.002 0 0 2.19911486</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_17">
+          <pose>1.41357048 1.11436911 0.002 0 0 2.23838477</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_18">
+          <pose>1.36873074 1.16900649 0.002 0 0 2.27765467</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_19">
+          <pose>1.32178052 1.22184134 0.002 0 0 2.31692458</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_20">
+          <pose>1.27279221 1.27279221 0.002 0 0 2.35619449</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_21">
+          <pose>1.22184134 1.32178052 0.002 0 0 2.39546440</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_22">
+          <pose>1.16900649 1.36873074 0.002 0 0 2.43473431</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_23">
+          <pose>1.11436911 1.41357048 0.002 0 0 2.47400421</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_24">
+          <pose>1.05801345 1.45623059 0.002 0 0 2.51327412</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_25">
+          <pose>1.00002642 1.49664530 0.002 0 0 2.55254403</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_26">
+          <pose>0.94049742 1.53475230 0.002 0 0 2.59181394</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_27">
+          <pose>0.87951823 1.57049281 0.002 0 0 2.63108385</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_28">
+          <pose>0.81718290 1.60381174 0.002 0 0 2.67035376</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_29">
+          <pose>0.75358753 1.63465771 0.002 0 0 2.70962366</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_30">
+          <pose>0.68883018 1.66298316 0.002 0 0 2.74889357</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_31">
+          <pose>0.62301070 1.68874440 0.002 0 0 2.78816348</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_32">
+          <pose>0.55623059 1.71190173 0.002 0 0 2.82743339</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_33">
+          <pose>0.48859281 1.73241943 0.002 0 0 2.86670330</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_34">
+          <pose>0.42020165 1.75026586 0.002 0 0 2.90597320</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_35">
+          <pose>0.35116258 1.76541350 0.002 0 0 2.94524311</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_36">
+          <pose>0.28158204 1.77783901 0.002 0 0 2.98451302</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_37">
+          <pose>0.21156732 1.78752322 0.002 0 0 3.02378293</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_38">
+          <pose>0.14122637 1.79445120 0.002 0 0 3.06305284</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_39">
+          <pose>0.07066767 1.79861227 0.002 0 0 3.10232275</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_40">
+          <pose>0.00000000 1.80000000 0.002 0 0 3.14159265</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_41">
+          <pose>-0.07066767 1.79861227 0.002 0 0 3.18086256</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_42">
+          <pose>-0.14122637 1.79445120 0.002 0 0 3.22013247</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_43">
+          <pose>-0.21156732 1.78752322 0.002 0 0 3.25940238</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_44">
+          <pose>-0.28158204 1.77783901 0.002 0 0 3.29867229</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_45">
+          <pose>-0.35116258 1.76541350 0.002 0 0 3.33794219</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_46">
+          <pose>-0.42020165 1.75026586 0.002 0 0 3.37721210</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_47">
+          <pose>-0.48859281 1.73241943 0.002 0 0 3.41648201</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_48">
+          <pose>-0.55623059 1.71190173 0.002 0 0 3.45575192</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_49">
+          <pose>-0.62301070 1.68874440 0.002 0 0 3.49502183</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_50">
+          <pose>-0.68883018 1.66298316 0.002 0 0 3.53429174</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_51">
+          <pose>-0.75358753 1.63465771 0.002 0 0 3.57356164</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_52">
+          <pose>-0.81718290 1.60381174 0.002 0 0 3.61283155</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_53">
+          <pose>-0.87951823 1.57049281 0.002 0 0 3.65210146</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_54">
+          <pose>-0.94049742 1.53475230 0.002 0 0 3.69137137</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_55">
+          <pose>-1.00002642 1.49664530 0.002 0 0 3.73064128</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_56">
+          <pose>-1.05801345 1.45623059 0.002 0 0 3.76991118</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_57">
+          <pose>-1.11436911 1.41357048 0.002 0 0 3.80918109</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_58">
+          <pose>-1.16900649 1.36873074 0.002 0 0 3.84845100</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_59">
+          <pose>-1.22184134 1.32178052 0.002 0 0 3.88772091</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_60">
+          <pose>-1.27279221 1.27279221 0.002 0 0 3.92699082</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_61">
+          <pose>-1.32178052 1.22184134 0.002 0 0 3.96626073</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_62">
+          <pose>-1.36873074 1.16900649 0.002 0 0 4.00553063</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_63">
+          <pose>-1.41357048 1.11436911 0.002 0 0 4.04480054</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_64">
+          <pose>-1.45623059 1.05801345 0.002 0 0 4.08407045</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_65">
+          <pose>-1.49664530 1.00002642 0.002 0 0 4.12334036</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_66">
+          <pose>-1.53475230 0.94049742 0.002 0 0 4.16261027</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_67">
+          <pose>-1.57049281 0.87951823 0.002 0 0 4.20188017</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_68">
+          <pose>-1.60381174 0.81718290 0.002 0 0 4.24115008</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_69">
+          <pose>-1.63465771 0.75358753 0.002 0 0 4.28041999</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_70">
+          <pose>-1.66298316 0.68883018 0.002 0 0 4.31968990</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_71">
+          <pose>-1.68874440 0.62301070 0.002 0 0 4.35895981</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_72">
+          <pose>-1.71190173 0.55623059 0.002 0 0 4.39822972</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_73">
+          <pose>-1.73241943 0.48859281 0.002 0 0 4.43749962</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_74">
+          <pose>-1.75026586 0.42020165 0.002 0 0 4.47676953</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_75">
+          <pose>-1.76541350 0.35116258 0.002 0 0 4.51603944</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_76">
+          <pose>-1.77783901 0.28158204 0.002 0 0 4.55530935</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_77">
+          <pose>-1.78752322 0.21156732 0.002 0 0 4.59457926</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_78">
+          <pose>-1.79445120 0.14122637 0.002 0 0 4.63384916</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_79">
+          <pose>-1.79861227 0.07066767 0.002 0 0 4.67311907</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_80">
+          <pose>-1.80000000 0.00000000 0.002 0 0 4.71238898</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_81">
+          <pose>-1.79861227 -0.07066767 0.002 0 0 4.75165889</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_82">
+          <pose>-1.79445120 -0.14122637 0.002 0 0 4.79092880</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_83">
+          <pose>-1.78752322 -0.21156732 0.002 0 0 4.83019870</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_84">
+          <pose>-1.77783901 -0.28158204 0.002 0 0 4.86946861</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_85">
+          <pose>-1.76541350 -0.35116258 0.002 0 0 4.90873852</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_86">
+          <pose>-1.75026586 -0.42020165 0.002 0 0 4.94800843</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_87">
+          <pose>-1.73241943 -0.48859281 0.002 0 0 4.98727834</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_88">
+          <pose>-1.71190173 -0.55623059 0.002 0 0 5.02654825</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_89">
+          <pose>-1.68874440 -0.62301070 0.002 0 0 5.06581815</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_90">
+          <pose>-1.66298316 -0.68883018 0.002 0 0 5.10508806</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_91">
+          <pose>-1.63465771 -0.75358753 0.002 0 0 5.14435797</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_92">
+          <pose>-1.60381174 -0.81718290 0.002 0 0 5.18362788</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_93">
+          <pose>-1.57049281 -0.87951823 0.002 0 0 5.22289779</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_94">
+          <pose>-1.53475230 -0.94049742 0.002 0 0 5.26216769</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_95">
+          <pose>-1.49664530 -1.00002642 0.002 0 0 5.30143760</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_96">
+          <pose>-1.45623059 -1.05801345 0.002 0 0 5.34070751</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_97">
+          <pose>-1.41357048 -1.11436911 0.002 0 0 5.37997742</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_98">
+          <pose>-1.36873074 -1.16900649 0.002 0 0 5.41924733</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_99">
+          <pose>-1.32178052 -1.22184134 0.002 0 0 5.45851724</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_100">
+          <pose>-1.27279221 -1.27279221 0.002 0 0 5.49778714</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_101">
+          <pose>-1.22184134 -1.32178052 0.002 0 0 5.53705705</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_102">
+          <pose>-1.16900649 -1.36873074 0.002 0 0 5.57632696</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_103">
+          <pose>-1.11436911 -1.41357048 0.002 0 0 5.61559687</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_104">
+          <pose>-1.05801345 -1.45623059 0.002 0 0 5.65486678</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_105">
+          <pose>-1.00002642 -1.49664530 0.002 0 0 5.69413668</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_106">
+          <pose>-0.94049742 -1.53475230 0.002 0 0 5.73340659</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_107">
+          <pose>-0.87951823 -1.57049281 0.002 0 0 5.77267650</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_108">
+          <pose>-0.81718290 -1.60381174 0.002 0 0 5.81194641</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_109">
+          <pose>-0.75358753 -1.63465771 0.002 0 0 5.85121632</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_110">
+          <pose>-0.68883018 -1.66298316 0.002 0 0 5.89048623</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_111">
+          <pose>-0.62301070 -1.68874440 0.002 0 0 5.92975613</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_112">
+          <pose>-0.55623059 -1.71190173 0.002 0 0 5.96902604</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_113">
+          <pose>-0.48859281 -1.73241943 0.002 0 0 6.00829595</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_114">
+          <pose>-0.42020165 -1.75026586 0.002 0 0 6.04756586</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_115">
+          <pose>-0.35116258 -1.76541350 0.002 0 0 6.08683577</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_116">
+          <pose>-0.28158204 -1.77783901 0.002 0 0 6.12610567</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_117">
+          <pose>-0.21156732 -1.78752322 0.002 0 0 6.16537558</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_118">
+          <pose>-0.14122637 -1.79445120 0.002 0 0 6.20464549</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_119">
+          <pose>-0.07066767 -1.79861227 0.002 0 0 6.24391540</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_120">
+          <pose>-0.00000000 -1.80000000 0.002 0 0 6.28318531</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_121">
+          <pose>0.07066767 -1.79861227 0.002 0 0 6.32245522</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_122">
+          <pose>0.14122637 -1.79445120 0.002 0 0 6.36172512</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_123">
+          <pose>0.21156732 -1.78752322 0.002 0 0 6.40099503</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_124">
+          <pose>0.28158204 -1.77783901 0.002 0 0 6.44026494</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_125">
+          <pose>0.35116258 -1.76541350 0.002 0 0 6.47953485</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_126">
+          <pose>0.42020165 -1.75026586 0.002 0 0 6.51880476</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_127">
+          <pose>0.48859281 -1.73241943 0.002 0 0 6.55807466</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_128">
+          <pose>0.55623059 -1.71190173 0.002 0 0 6.59734457</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_129">
+          <pose>0.62301070 -1.68874440 0.002 0 0 6.63661448</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_130">
+          <pose>0.68883018 -1.66298316 0.002 0 0 6.67588439</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_131">
+          <pose>0.75358753 -1.63465771 0.002 0 0 6.71515430</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_132">
+          <pose>0.81718290 -1.60381174 0.002 0 0 6.75442421</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_133">
+          <pose>0.87951823 -1.57049281 0.002 0 0 6.79369411</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_134">
+          <pose>0.94049742 -1.53475230 0.002 0 0 6.83296402</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_135">
+          <pose>1.00002642 -1.49664530 0.002 0 0 6.87223393</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_136">
+          <pose>1.05801345 -1.45623059 0.002 0 0 6.91150384</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_137">
+          <pose>1.11436911 -1.41357048 0.002 0 0 6.95077375</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_138">
+          <pose>1.16900649 -1.36873074 0.002 0 0 6.99004365</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_139">
+          <pose>1.22184134 -1.32178052 0.002 0 0 7.02931356</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_140">
+          <pose>1.27279221 -1.27279221 0.002 0 0 7.06858347</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_141">
+          <pose>1.32178052 -1.22184134 0.002 0 0 7.10785338</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_142">
+          <pose>1.36873074 -1.16900649 0.002 0 0 7.14712329</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_143">
+          <pose>1.41357048 -1.11436911 0.002 0 0 7.18639320</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_144">
+          <pose>1.45623059 -1.05801345 0.002 0 0 7.22566310</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_145">
+          <pose>1.49664530 -1.00002642 0.002 0 0 7.26493301</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_146">
+          <pose>1.53475230 -0.94049742 0.002 0 0 7.30420292</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_147">
+          <pose>1.57049281 -0.87951823 0.002 0 0 7.34347283</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_148">
+          <pose>1.60381174 -0.81718290 0.002 0 0 7.38274274</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_149">
+          <pose>1.63465771 -0.75358753 0.002 0 0 7.42201264</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_150">
+          <pose>1.66298316 -0.68883018 0.002 0 0 7.46128255</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_151">
+          <pose>1.68874440 -0.62301070 0.002 0 0 7.50055246</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_152">
+          <pose>1.71190173 -0.55623059 0.002 0 0 7.53982237</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_153">
+          <pose>1.73241943 -0.48859281 0.002 0 0 7.57909228</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_154">
+          <pose>1.75026586 -0.42020165 0.002 0 0 7.61836218</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_155">
+          <pose>1.76541350 -0.35116258 0.002 0 0 7.65763209</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_156">
+          <pose>1.77783901 -0.28158204 0.002 0 0 7.69690200</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_157">
+          <pose>1.78752322 -0.21156732 0.002 0 0 7.73617191</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_158">
+          <pose>1.79445120 -0.14122637 0.002 0 0 7.77544182</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="yellow_159">
+          <pose>1.79861227 -0.07066767 0.002 0 0 7.81471173</pose>
+          <geometry>
+            <box>
+              <size>0.072 0.06 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0 1</ambient>
+            <diffuse>1 0.85 0 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+  </world>
+</sdf>

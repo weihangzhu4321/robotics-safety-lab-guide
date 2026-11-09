@@ -1,0 +1,182 @@
+[
+  {
+    "name": "xz-utils_5.2.4-1ubuntu1.1_amd64.deb",
+    "url": "https://mirrors.tuna.tsinghua.edu.cn/ubuntu/pool/main/x/xz-utils/xz-utils_5.2.4-1ubuntu1.1_amd64.deb",
+    "sha256": "6b192aa8e56c7e16ad7b3f39e6978a8ca899194e4d7af05ca4640170eafa8272",
+    "bytes": 82640
+  },
+  {
+    "name": "binutils-common_2.34-6ubuntu1.11_amd64.deb",
+    "url": "https://mirrors.tuna.tsinghua.edu.cn/ubuntu/pool/main/b/binutils/binutils-common_2.34-6ubuntu1.11_amd64.deb",
+    "sha256": "0a0dbd1ab3be5b81bf5cb3c5e4b542f4790d929696274e46e3fafa09bded3a26",
+    "bytes": 207852
+  },
+  {
+    "name": "libbinutils_2.34-6ubuntu1.11_amd64.deb",
+    "url": "https://mirrors.tuna.tsinghua.edu.cn/ubuntu/pool/main/b/binutils/libbinutils_2.34-6ubuntu1.11_amd64.deb",
+    "sha256": "ac8c221d97e0b2a38235475a2a5c9f6c06e86af14e52b9d16ef6a6cb0169e10f",
+    "bytes": 475468
+  },
+  {
+    "name": "libctf-nobfd0_2.34-6ubuntu1.11_amd64.deb",
+    "url": "https://mirrors.tuna.tsinghua.edu.cn/ubuntu/pool/main/b/binutils/libctf-nobfd0_2.34-6ubuntu1.11_amd64.deb",
+    "sha256": "c787aaa2c066f09ea0c5d2caf100f36aa20af3e703add74402088187f399f771",
+    "bytes": 48168
+  },
+  {
+    "name": "libctf0_2.34-6ubuntu1.11_amd64.deb",
+    "url": "https://mirrors.tuna.tsinghua.edu.cn/ubuntu/pool/main/b/binutils/libctf0_2.34-6ubuntu1.11_amd64.deb",
+    "sha256": "7c707710015cd5aacdfc0700caf66bd2630ff3115367f7f8468f7f10b99bf645",
+    "bytes": 46620
+  },
+  {
+    "name": "binutils-x86-64-linux-gnu_2.34-6ubuntu1.11_amd64.deb",
+    "url": "https://mirrors.tuna.tsinghua.edu.cn/ubuntu/pool/main/b/binutils/binutils-x86-64-linux-gnu_2.34-6ubuntu1.11_amd64.deb",
+    "sha256": "b9bebd3fe9fde588e181cdc53a0fc0d7f398e9c836b7cfeb3a27fab4cb92204f",
+    "bytes": 1612092
+  },
+  {
+    "name": "binutils_2.34-6ubuntu1.11_amd64.deb",
+    "url": "https://mirrors.tuna.tsinghua.edu.cn/ubuntu/pool/main/b/binutils/binutils_2.34-6ubuntu1.11_amd64.deb",
+    "sha256": "c88b2acf09b27926756db846cdf16b0b44216a5c890dfcea319a11385fee3112",
+    "bytes": 3380
+  },
+  {
+    "name": "gcc-9-base_9.4.0-1ubuntu1~20.04.2_amd64.deb",
+    "url": "https://mirrors.tuna.tsinghua.edu.cn/ubuntu/pool/main/g/gcc-9/gcc-9-base_9.4.0-1ubuntu1~20.04.2_amd64.deb",
+    "sha256": "7fb8300b83b99d2b65d8ccbf69119829789bc4204c450eb94cc6f666e3b4254e",
+    "bytes": 18896
+  },
+  {
+    "name": "libisl22_0.22.1-1_amd64.deb",
+    "url": "https://mirrors.tuna.tsinghua.edu.cn/ubuntu/pool/main/i/isl/libisl22_0.22.1-1_amd64.deb",
+    "sha256": "67cadab06a50a29cde11c1c1d02847afbae6f0465686481c9106577777b88a44",
+    "bytes": 591960
+  },
+  {
+    "name": "libmpfr6_4.0.2-1_amd64.deb",
+    "url": "https://mirrors.tuna.tsinghua.edu.cn/ubuntu/pool/main/m/mpfr4/libmpfr6_4.0.2-1_amd64.deb",
+    "sha256": "d098b67c3e1492a1c21a6a0d9befc88344e59a0d0eb6109384f85d8524a608cb",
+    "bytes": 240292
+  },
+  {
+    "name": "libmpc3_1.1.0-1_amd64.deb",
+    "url": "https://mirrors.tuna.tsinghua.edu.cn/ubuntu/pool/main/m/mpclib3/libmpc3_1.1.0-1_amd64.deb",
+    "sha256": "3c3c45aa50ce1ff753107766c6fea35a82c52ad11afcab0abfd0cd0c76730f87",
+    "bytes": 40784
+  },
+  {
+    "name": "cpp-9_9.4.0-1ubuntu1~20.04.2_amd64.deb",
+    "url": "https://mirrors.tuna.tsinghua.edu.cn/ubuntu/pool/main/g/gcc-9/cpp-9_9.4.0-1ubuntu1~20.04.2_amd64.deb",
+    "sha256": "ed10bd0ab893389c21622d01415991466e5b20a0c57732308884180ec1f0a6e8",
+    "bytes": 7501620
+  },
+  {
+    "name": "cpp_4%3a9.3.0-1ubuntu2_amd64.deb",
+    "url": "https://mirrors.tuna.tsinghua.edu.cn/ubuntu/pool/main/g/gcc-defaults/cpp_9.3.0-1ubuntu2_amd64.deb",
+    "sha256": "6a29410b6f9a6f1f6b3fe93d0b994e56293126962950bb1c9bbf0a8909044b03",
+    "bytes": 27588
+  },
+  {
+    "name": "libcc1-0_10.5.0-1ubuntu1~20.04_amd64.deb",
+    "url": "https://mirrors.tuna.tsinghua.edu.cn/ubuntu/pool/main/g/gcc-10/libcc1-0_10.5.0-1ubuntu1~20.04_amd64.deb",
+    "sha256": "b9b31f671eb35a20235b4478f232c2939a41737d12660b3b38e340b82a25a9b3",
+    "bytes": 48832
+  },
+  {
+    "name": "libasan5_9.4.0-1ubuntu1~20.04.2_amd64.deb",
+    "url": "https://mirrors.tuna.tsinghua.edu.cn/ubuntu/pool/main/g/gcc-9/libasan5_9.4.0-1ubuntu1~20.04.2_amd64.deb",
+    "sha256": "726990d770038654113040ea5234f27042ef4d61974181b1728c02b15daf9050",
+    "bytes": 2752248
+  },
+  {
+    "name": "libgcc-9-dev_9.4.0-1ubuntu1~20.04.2_amd64.deb",
+    "url": "https://mirrors.tuna.tsinghua.edu.cn/ubuntu/pool/main/g/gcc-9/libgcc-9-dev_9.4.0-1ubuntu1~20.04.2_amd64.deb",
+    "sha256": "f21b9daeefa0712b6c6f035face86f5ae9cef5079ae61570b84ebda0352db77e",
+    "bytes": 2359460
+  },
+  {
+    "name": "gcc-9_9.4.0-1ubuntu1~20.04.2_amd64.deb",
+    "url": "https://mirrors.tuna.tsinghua.edu.cn/ubuntu/pool/main/g/gcc-9/gcc-9_9.4.0-1ubuntu1~20.04.2_amd64.deb",
+    "sha256": "7b6f2e5aa58695b30a5e4d8e1c1e4f39bf5f7b28fc5db1609385e0630eac8c18",
+    "bytes": 8275648
+  },
+  {
+    "name": "gcc_4%3a9.3.0-1ubuntu2_amd64.deb",
+    "url": "https://mirrors.tuna.tsinghua.edu.cn/ubuntu/pool/main/g/gcc-defaults/gcc_9.3.0-1ubuntu2_amd64.deb",
+    "sha256": "78ab6a8841c68300ba39992e8e33190371e133b3592c601ed3052d54e2ba59ea",
+    "bytes": 5208
+  },
+  {
+    "name": "libstdc++-9-dev_9.4.0-1ubuntu1~20.04.2_amd64.deb",
+    "url": "https://mirrors.tuna.tsinghua.edu.cn/ubuntu/pool/main/g/gcc-9/libstdc++-9-dev_9.4.0-1ubuntu1~20.04.2_amd64.deb",
+    "sha256": "e8c637e8f5a87f05b3f1dad0e020cc3763c384f5bb0fc159f69277645a2444df",
+    "bytes": 1722156
+  },
+  {
+    "name": "g++-9_9.4.0-1ubuntu1~20.04.2_amd64.deb",
+    "url": "https://mirrors.tuna.tsinghua.edu.cn/ubuntu/pool/main/g/gcc-9/g++-9_9.4.0-1ubuntu1~20.04.2_amd64.deb",
+    "sha256": "2c617ef6d7e1809ded44e5a6d0ea2410ec4ec793765b91e892b6acc9a12ddb3c",
+    "bytes": 8421356
+  },
+  {
+    "name": "g++_4%3a9.3.0-1ubuntu2_amd64.deb",
+    "url": "https://mirrors.tuna.tsinghua.edu.cn/ubuntu/pool/main/g/gcc-defaults/g++_9.3.0-1ubuntu2_amd64.deb",
+    "sha256": "c613719f24d30e87ed196f27a324a6820032675759330772a1e6620c7662840e",
+    "bytes": 1604
+  },
+  {
+    "name": "make_4.2.1-1.2_amd64.deb",
+    "url": "https://mirrors.tuna.tsinghua.edu.cn/ubuntu/pool/main/m/make-dfsg/make_4.2.1-1.2_amd64.deb",
+    "sha256": "41e534af98cdb6219bc98fa4276d9c928a0862b8b373d49ee1fbe0ae5db64dc2",
+    "bytes": 162292
+  },
+  {
+    "name": "patch_2.7.6-6_amd64.deb",
+    "url": "https://mirrors.tuna.tsinghua.edu.cn/ubuntu/pool/main/p/patch/patch_2.7.6-6_amd64.deb",
+    "sha256": "e29e780677057f72c82d7dde465fb9d9c3be629c527bcf8174f588232af23872",
+    "bytes": 104988
+  },
+  {
+    "name": "dpkg-dev_1.19.7ubuntu3.2_all.deb",
+    "url": "https://mirrors.tuna.tsinghua.edu.cn/ubuntu/pool/main/d/dpkg/dpkg-dev_1.19.7ubuntu3.2_all.deb",
+    "sha256": "90ae15545a0c3b8df1a1d7bfd970a975267a2031a6e1da1e8c9c32baf7680a53",
+    "bytes": 678936
+  },
+  {
+    "name": "build-essential_12.8ubuntu1.1_amd64.deb",
+    "url": "https://mirrors.tuna.tsinghua.edu.cn/ubuntu/pool/main/b/build-essential/build-essential_12.8ubuntu1.1_amd64.deb",
+    "sha256": "50be2bfb66a8ce034179c7d95e5f177cce714e897028e1f4cacb564997b1c9e6",
+    "bytes": 4664
+  },
+  {
+    "name": "libfakeroot_1.24-1_amd64.deb",
+    "url": "https://mirrors.tuna.tsinghua.edu.cn/ubuntu/pool/main/f/fakeroot/libfakeroot_1.24-1_amd64.deb",
+    "sha256": "e542e0c0543be5b02d59306d3747a527e054225816465a2c3e4c97c6e7439222",
+    "bytes": 25720
+  },
+  {
+    "name": "fakeroot_1.24-1_amd64.deb",
+    "url": "https://mirrors.tuna.tsinghua.edu.cn/ubuntu/pool/main/f/fakeroot/fakeroot_1.24-1_amd64.deb",
+    "sha256": "2d9cc4fe6c6b0925e452d1454645171b957a37610a068e153abd6318746d996f",
+    "bytes": 62636
+  },
+  {
+    "name": "libalgorithm-diff-perl_1.19.03-2_all.deb",
+    "url": "https://mirrors.tuna.tsinghua.edu.cn/ubuntu/pool/main/liba/libalgorithm-diff-perl/libalgorithm-diff-perl_1.19.03-2_all.deb",
+    "sha256": "6e774aa293dfa6c33222c9f7443354e94d86d86e2888b9e7a28a136f4c03a0c3",
+    "bytes": 46616
+  },
+  {
+    "name": "libalgorithm-diff-xs-perl_0.04-6_amd64.deb",
+    "url": "https://mirrors.tuna.tsinghua.edu.cn/ubuntu/pool/main/liba/libalgorithm-diff-xs-perl/libalgorithm-diff-xs-perl_0.04-6_amd64.deb",
+    "sha256": "e32bb578b65b5e50ae14c1aa8fcea4c59d9dc6b93de5ae685b91ea0be9b54172",
+    "bytes": 11344
+  },
+  {
+    "name": "libalgorithm-merge-perl_0.08-3_all.deb",
+    "url": "https://mirrors.tuna.tsinghua.edu.cn/ubuntu/pool/main/liba/libalgorithm-merge-perl/libalgorithm-merge-perl_0.08-3_all.deb",
+    "sha256": "ff7a1922d430da383cc1ee20bee8fe464fb56605297dcbb3412338a356cc7ad6",
+    "bytes": 11992
+  }
+]

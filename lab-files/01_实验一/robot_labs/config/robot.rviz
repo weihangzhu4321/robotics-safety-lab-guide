@@ -1,0 +1,46 @@
+Panels:
+  - Class: rviz/Displays
+    Name: Displays
+Visualization Manager:
+  Class: ""
+  Global Options:
+    Background Color: 48; 48; 48
+    Fixed Frame: odom
+    Frame Rate: 15
+  Displays:
+    - Class: rviz/Grid
+      Name: Grid
+      Enabled: true
+      Cell Size: 1
+      Plane Cell Count: 20
+    - Class: rviz/RobotModel
+      Name: RobotModel
+      Enabled: true
+      Robot Description: robot_description
+    - Class: rviz/LaserScan
+      Name: LaserScan
+      Enabled: true
+      Topic: /scan
+      Size (m): 0.03
+      Style: Points
+      Color: 0; 255; 0
+      Color Transformer: FlatColor
+      Queue Size: 10
+    - Class: rviz/TF
+      Name: TF
+      Enabled: false
+  Tools:
+    - Class: rviz/Interact
+    - Class: rviz/MoveCamera
+    - Class: rviz/Select
+  Views:
+    Current:
+      Class: rviz/TopDownOrtho
+      Name: Current View
+      Scale: 80
+      Target Frame: odom
+      X: 0
+      Y: 0
+Window Geometry:
+  Width: 1100
+  Height: 750

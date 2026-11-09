@@ -1,0 +1,27 @@
+<launch>
+  <!-- 以下 topic 是教材例名；必须先用 rostopic list/type 确认现场。 -->
+  <arg name="image_topic" default="/camera/rgb/image_raw"/>
+  <arg name="cmd_topic" default="/cmd_vel"/>
+  <!-- 首次启动固定使用 false；只做图像观察，不创建速度发布器。 -->
+  <arg name="enable_motion" default="false"/>
+  <!-- 留空时自动新建 ~/lab4_records/line_follow_时间_PID.csv。 -->
+  <arg name="csv_path" default=""/>
+  <node pkg="line_follow_lab4" type="follower.py" name="line_follower" output="screen">
+    <param name="image_topic" value="$(arg image_topic)"/>
+    <param name="cmd_topic" value="$(arg cmd_topic)"/>
+    <param name="enable_motion" value="$(arg enable_motion)" type="bool"/>
+    <param name="csv_path" value="$(arg csv_path)"/>
+    <!-- 教材 HSV 初值，需现场观察 mask 调整；OpenCV H 为 0..179。 -->
+    <rosparam param="hsv_lower">[20, 43, 46]</rosparam>
+    <rosparam param="hsv_upper">[90, 255, 255]</rosparam>
+    <param name="roi_start_ratio" value="0.8333333333333334"/>
+    <param name="roi_height_px" value="20"/>
+    <param name="min_line_pixels" value="20"/>
+    <param name="kp" value="0.001"/>
+    <param name="linear_speed" value="0.05"/>
+    <param name="max_angular_speed" value="0.4"/>
+    <param name="frame_timeout_s" value="0.5"/>
+    <param name="startup_timeout_s" value="5.0"/>
+    <param name="future_stamp_tolerance_s" value="0.1"/>
+  </node>
+</launch>

@@ -1,0 +1,128 @@
+<launch>
+  <!--
+    Static/isolated ROS1 configuration check only.
+    No goal client is started. All move_base velocity output is hard-routed
+    to per-robot preview topics, never to /cmd_vel or a robot command topic.
+  -->
+  <arg name="map_file" />
+  <arg name="map_frame" />
+
+  <!-- Every live-dependent value is required; do not replace with course examples. -->
+  <arg name="tb3_0_scan_topic" />
+  <arg name="tb3_0_odom_topic" />
+  <arg name="tb3_0_odom_frame" />
+  <arg name="tb3_0_base_frame" />
+  <arg name="tb3_0_initial_pose_x" />
+  <arg name="tb3_0_initial_pose_y" />
+  <arg name="tb3_0_initial_pose_yaw" />
+
+  <arg name="tb3_1_scan_topic" />
+  <arg name="tb3_1_odom_topic" />
+  <arg name="tb3_1_odom_frame" />
+  <arg name="tb3_1_base_frame" />
+  <arg name="tb3_1_initial_pose_x" />
+  <arg name="tb3_1_initial_pose_y" />
+  <arg name="tb3_1_initial_pose_yaw" />
+
+  <arg name="tb3_2_scan_topic" />
+  <arg name="tb3_2_odom_topic" />
+  <arg name="tb3_2_odom_frame" />
+  <arg name="tb3_2_base_frame" />
+  <arg name="tb3_2_initial_pose_x" />
+  <arg name="tb3_2_initial_pose_y" />
+  <arg name="tb3_2_initial_pose_yaw" />
+
+  <node pkg="map_server" type="map_server" name="map_server" args="$(arg map_file)" output="screen">
+    <param name="frame_id" value="$(arg map_frame)" />
+  </node>
+
+  <group ns="tb3_0">
+    <remap from="map" to="/map" />
+    <remap from="scan" to="$(arg tb3_0_scan_topic)" />
+    <include file="$(find turtlebot3_navigation)/launch/amcl.launch">
+      <arg name="scan_topic" value="$(arg tb3_0_scan_topic)" />
+      <arg name="initial_pose_x" value="$(arg tb3_0_initial_pose_x)" />
+      <arg name="initial_pose_y" value="$(arg tb3_0_initial_pose_y)" />
+      <arg name="initial_pose_a" value="$(arg tb3_0_initial_pose_yaw)" />
+    </include>
+    <include file="$(find turtlebot3_navigation)/launch/move_base.launch">
+      <arg name="model" value="burger" />
+      <arg name="cmd_vel_topic" value="/tb3_0/nav_preview_cmd_vel" />
+      <arg name="odom_topic" value="$(arg tb3_0_odom_topic)" />
+      <arg name="move_forward_only" value="false" />
+    </include>
+    <param name="amcl/use_map_topic" value="true" />
+    <param name="amcl/global_frame_id" value="$(arg map_frame)" />
+    <param name="amcl/odom_frame_id" value="$(arg tb3_0_odom_frame)" />
+    <param name="amcl/base_frame_id" value="$(arg tb3_0_base_frame)" />
+    <param name="move_base/global_costmap/global_frame" value="$(arg map_frame)" />
+    <param name="move_base/local_costmap/global_frame" value="$(arg tb3_0_odom_frame)" />
+    <param name="move_base/global_costmap/robot_base_frame" value="$(arg tb3_0_base_frame)" />
+    <param name="move_base/local_costmap/robot_base_frame" value="$(arg tb3_0_base_frame)" />
+    <param name="move_base/global_costmap/scan/topic" value="$(arg tb3_0_scan_topic)" />
+    <param name="move_base/local_costmap/scan/topic" value="$(arg tb3_0_scan_topic)" />
+    <param name="move_base/global_costmap/scan/sensor_frame" type="str" value="" />
+    <param name="move_base/local_costmap/scan/sensor_frame" type="str" value="" />
+    <param name="move_base/recovery_behavior_enabled" value="false" />
+  </group>
+
+  <group ns="tb3_1">
+    <remap from="map" to="/map" />
+    <remap from="scan" to="$(arg tb3_1_scan_topic)" />
+    <include file="$(find turtlebot3_navigation)/launch/amcl.launch">
+      <arg name="scan_topic" value="$(arg tb3_1_scan_topic)" />
+      <arg name="initial_pose_x" value="$(arg tb3_1_initial_pose_x)" />
+      <arg name="initial_pose_y" value="$(arg tb3_1_initial_pose_y)" />
+      <arg name="initial_pose_a" value="$(arg tb3_1_initial_pose_yaw)" />
+    </include>
+    <include file="$(find turtlebot3_navigation)/launch/move_base.launch">
+      <arg name="model" value="burger" />
+      <arg name="cmd_vel_topic" value="/tb3_1/nav_preview_cmd_vel" />
+      <arg name="odom_topic" value="$(arg tb3_1_odom_topic)" />
+      <arg name="move_forward_only" value="false" />
+    </include>
+    <param name="amcl/use_map_topic" value="true" />
+    <param name="amcl/global_frame_id" value="$(arg map_frame)" />
+    <param name="amcl/odom_frame_id" value="$(arg tb3_1_odom_frame)" />
+    <param name="amcl/base_frame_id" value="$(arg tb3_1_base_frame)" />
+    <param name="move_base/global_costmap/global_frame" value="$(arg map_frame)" />
+    <param name="move_base/local_costmap/global_frame" value="$(arg tb3_1_odom_frame)" />
+    <param name="move_base/global_costmap/robot_base_frame" value="$(arg tb3_1_base_frame)" />
+    <param name="move_base/local_costmap/robot_base_frame" value="$(arg tb3_1_base_frame)" />
+    <param name="move_base/global_costmap/scan/topic" value="$(arg tb3_1_scan_topic)" />
+    <param name="move_base/local_costmap/scan/topic" value="$(arg tb3_1_scan_topic)" />
+    <param name="move_base/global_costmap/scan/sensor_frame" type="str" value="" />
+    <param name="move_base/local_costmap/scan/sensor_frame" type="str" value="" />
+    <param name="move_base/recovery_behavior_enabled" value="false" />
+  </group>
+
+  <group ns="tb3_2">
+    <remap from="map" to="/map" />
+    <remap from="scan" to="$(arg tb3_2_scan_topic)" />
+    <include file="$(find turtlebot3_navigation)/launch/amcl.launch">
+      <arg name="scan_topic" value="$(arg tb3_2_scan_topic)" />
+      <arg name="initial_pose_x" value="$(arg tb3_2_initial_pose_x)" />
+      <arg name="initial_pose_y" value="$(arg tb3_2_initial_pose_y)" />
+      <arg name="initial_pose_a" value="$(arg tb3_2_initial_pose_yaw)" />
+    </include>
+    <include file="$(find turtlebot3_navigation)/launch/move_base.launch">
+      <arg name="model" value="burger" />
+      <arg name="cmd_vel_topic" value="/tb3_2/nav_preview_cmd_vel" />
+      <arg name="odom_topic" value="$(arg tb3_2_odom_topic)" />
+      <arg name="move_forward_only" value="false" />
+    </include>
+    <param name="amcl/use_map_topic" value="true" />
+    <param name="amcl/global_frame_id" value="$(arg map_frame)" />
+    <param name="amcl/odom_frame_id" value="$(arg tb3_2_odom_frame)" />
+    <param name="amcl/base_frame_id" value="$(arg tb3_2_base_frame)" />
+    <param name="move_base/global_costmap/global_frame" value="$(arg map_frame)" />
+    <param name="move_base/local_costmap/global_frame" value="$(arg tb3_2_odom_frame)" />
+    <param name="move_base/global_costmap/robot_base_frame" value="$(arg tb3_2_base_frame)" />
+    <param name="move_base/local_costmap/robot_base_frame" value="$(arg tb3_2_base_frame)" />
+    <param name="move_base/global_costmap/scan/topic" value="$(arg tb3_2_scan_topic)" />
+    <param name="move_base/local_costmap/scan/topic" value="$(arg tb3_2_scan_topic)" />
+    <param name="move_base/global_costmap/scan/sensor_frame" type="str" value="" />
+    <param name="move_base/local_costmap/scan/sensor_frame" type="str" value="" />
+    <param name="move_base/recovery_behavior_enabled" value="false" />
+  </group>
+</launch>

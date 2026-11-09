@@ -1,0 +1,32 @@
+[
+  {
+    "url": "https://files.pythonhosted.org/packages/50/52/adaf4c8c100a8c49d2bd058e5b551f73dfd8cb89eb4911e25a0c469b6b4e/pycryptodome-3.23.0-cp37-abi3-manylinux_2_17_aarch64.manylinux2014_aarch64.whl",
+    "filename": "pycryptodome-3.23.0-cp37-abi3-manylinux_2_17_aarch64.manylinux2014_aarch64.whl",
+    "source": "https://pypi.org/pypi/pycryptodome/3.23.0/json",
+    "sha256": "67bd81fcbe34f43ad9422ee8fd4843c8e7198dd88dd3d40e6de42ee65fbe1490"
+  },
+  {
+    "url": "https://files.pythonhosted.org/packages/5f/e9/a09476d436d0ff1402ac3867d933c61805ec2326c6ea557aeeac3825604e/pycryptodome-3.23.0-cp37-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+    "filename": "pycryptodome-3.23.0-cp37-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+    "source": "https://pypi.org/pypi/pycryptodome/3.23.0/json",
+    "sha256": "c8987bd3307a39bc03df5c8e0e3d8be0c4c3518b7f044b0f4c15d1aa78f52575"
+  },
+  {
+    "url": "https://files.pythonhosted.org/packages/54/2f/e97a1b8294db0daaa87012c24a7bb714147c7ade7656973fd6c736b484ff/pycryptodome-3.23.0-cp37-abi3-win_amd64.whl",
+    "filename": "pycryptodome-3.23.0-cp37-abi3-win_amd64.whl",
+    "source": "https://pypi.org/pypi/pycryptodome/3.23.0/json",
+    "sha256": "c75b52aacc6c0c260f204cbdd834f76edc9fb0d8e0da9fbf8352ef58202564e2"
+  },
+  {
+    "url": "https://files.pythonhosted.org/packages/8e/a6/8452177684d5e906854776276ddd34eca30d1b1e15aa1ee9cefc289a33f5/pycryptodome-3.23.0.tar.gz",
+    "filename": "pycryptodome-3.23.0.tar.gz",
+    "source": "https://pypi.org/pypi/pycryptodome/3.23.0/json",
+    "sha256": "447700a657182d60338bab09fdb27518f8856aecd80ae4c6bdddb67ff5da44ef"
+  },
+  {
+    "url": "https://files.pythonhosted.org/packages/e1/b7/182161210a13158cd3ccc41ee19aadef54496b74f2817cc147006ec932b4/setuptools-44.1.1-py2.py3-none-any.whl",
+    "filename": "setuptools-44.1.1-py2.py3-none-any.whl",
+    "source": "https://pypi.org/pypi/setuptools/44.1.1/json",
+    "sha256": "27a714c09253134e60a6fa68130f78c7037e5562c4f21f8f318f2ae900d152d5"
+  }
+]

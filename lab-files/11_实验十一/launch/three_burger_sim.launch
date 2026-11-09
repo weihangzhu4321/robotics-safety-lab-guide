@@ -1,0 +1,64 @@
+<launch>
+  <arg name="gui" default="false" />
+  <arg name="output_dir" default="$(find lab11_formation)/runs" />
+  <arg name="max_seconds" default="90.0" />
+
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find lab11_formation)/worlds/three_lane.world" />
+    <arg name="paused" value="false" />
+    <arg name="use_sim_time" value="true" />
+    <arg name="gui" value="$(arg gui)" />
+    <arg name="headless" value="true" />
+    <arg name="debug" value="false" />
+  </include>
+
+  <group ns="tb3_0">
+    <param name="robot_description" command="$(find xacro)/xacro --inorder $(find turtlebot3_description)/urdf/turtlebot3_burger.urdf.xacro" />
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen">
+      <param name="publish_frequency" type="double" value="30.0" />
+      <param name="tf_prefix" value="tb3_0" />
+    </node>
+    <node pkg="gazebo_ros" type="spawn_model" name="spawn_urdf" output="screen"
+          args="-urdf -robot_namespace /tb3_0 -model tb3_0 -x -2.2 -y -0.55 -z 0.02 -Y 0 -param robot_description" />
+  </group>
+  <group ns="tb3_1">
+    <param name="robot_description" command="$(find xacro)/xacro --inorder $(find turtlebot3_description)/urdf/turtlebot3_burger.urdf.xacro" />
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen">
+      <param name="publish_frequency" type="double" value="30.0" />
+      <param name="tf_prefix" value="tb3_1" />
+    </node>
+    <node pkg="gazebo_ros" type="spawn_model" name="spawn_urdf" output="screen"
+          args="-urdf -robot_namespace /tb3_1 -model tb3_1 -x -2.2 -y 0.0 -z 0.02 -Y 0 -param robot_description" />
+  </group>
+  <group ns="tb3_2">
+    <param name="robot_description" command="$(find xacro)/xacro --inorder $(find turtlebot3_description)/urdf/turtlebot3_burger.urdf.xacro" />
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen">
+      <param name="publish_frequency" type="double" value="30.0" />
+      <param name="tf_prefix" value="tb3_2" />
+    </node>
+    <node pkg="gazebo_ros" type="spawn_model" name="spawn_urdf" output="screen"
+          args="-urdf -robot_namespace /tb3_2 -model tb3_2 -x -2.2 -y 0.55 -z 0.02 -Y 0 -param robot_description" />
+  </group>
+
+  <node pkg="lab11_formation" type="formation_sim.py" name="formation_sim" output="screen" required="true">
+    <param name="output_dir" value="$(arg output_dir)" />
+    <param name="max_seconds" value="$(arg max_seconds)" />
+    <param name="rate_hz" value="10.0" />
+    <param name="max_linear" value="0.12" />
+    <param name="max_angular" value="0.35" />
+    <param name="min_separation" value="0.42" />
+    <param name="goal_tolerance" value="0.10" />
+    <param name="simulation_only" value="true" />
+    <rosparam param="robots">
+      - name: tb3_0
+        start: [-2.2, -0.55]
+        goal: [2.2, -0.55]
+      - name: tb3_1
+        start: [-2.2, 0.0]
+        goal: [2.2, 0.0]
+      - name: tb3_2
+        start: [-2.2, 0.55]
+        goal: [2.2, 0.55]
+    </rosparam>
+  </node>
+</launch>

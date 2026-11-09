@@ -1,0 +1,15 @@
+<launch>
+  <arg name="map_file"/>
+  <arg name="open_rviz" default="true"/>
+  <include file="$(find turtlebot3_navigation)/launch/turtlebot3_navigation.launch">
+    <arg name="map_file" value="$(arg map_file)"/>
+    <arg name="open_rviz" value="$(arg open_rviz)"/>
+  </include>
+  <param name="/move_base/DWAPlannerROS/max_vel_x" value="0.10"/>
+  <param name="/move_base/DWAPlannerROS/max_vel_trans" value="0.10"/>
+  <param name="/move_base/DWAPlannerROS/min_vel_trans" value="0.03"/>
+  <param name="/move_base/DWAPlannerROS/max_vel_theta" value="0.60"/>
+  <param name="/move_base/DWAPlannerROS/min_vel_theta" value="0.10"/>
+  <param name="/move_base/DWAPlannerROS/acc_lim_x" value="0.50"/>
+  <param name="/move_base/DWAPlannerROS/acc_lim_theta" value="1.00"/>
+</launch>

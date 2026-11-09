@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>line_follow_lab4</name>
+  <version>0.1.0</version>
+  <description>实验四离线预备：ROS1 图像预览、比例循线与保守停车。</description>
+  <maintainer email="student@example.invalid">Lab student</maintainer>
+  <license>MIT</license>
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>rospy</depend>
+  <depend>sensor_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>std_msgs</depend>
+  <depend>cv_bridge</depend>
+  <exec_depend>python3-opencv</exec_depend>
+  <exec_depend>python3-numpy</exec_depend>
+  <exec_depend>gazebo_ros</exec_depend>
+  <exec_depend>turtlebot3_description</exec_depend>
+  <exec_depend>robot_state_publisher</exec_depend>
+  <exec_depend>xacro</exec_depend>
+  <export/>
+</package>

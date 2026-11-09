@@ -1,0 +1,21 @@
+<launch>
+  <!-- 本包自建黄线圆环练习场，不是教师 course.world，也不是实验结果。 -->
+  <arg name="model" default="waffle" />
+  <arg name="x_pos" default="1.8" />
+  <arg name="y_pos" default="0.0" />
+  <arg name="yaw" default="1.57079632679" />
+  <arg name="camera_width" default="320" />
+  <arg name="camera_height" default="240" />
+  <arg name="camera_rate" default="10" />
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find line_follow_lab4)/worlds/prep_ring.world" />
+    <arg name="paused" value="false" />
+    <arg name="use_sim_time" value="true" />
+    <arg name="gui" value="true" />
+    <arg name="headless" value="false" />
+  </include>
+  <param name="robot_description" command="python3 $(find line_follow_lab4)/scripts/prepare_robot_description.py --model $(arg model) --width $(arg camera_width) --height $(arg camera_height) --rate $(arg camera_rate)" />
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" />
+  <node pkg="gazebo_ros" type="spawn_model" name="spawn_urdf"
+        args="-urdf -model turtlebot3_$(arg model) -x $(arg x_pos) -y $(arg y_pos) -z 0.0 -Y $(arg yaw) -param robot_description" />
+</launch>

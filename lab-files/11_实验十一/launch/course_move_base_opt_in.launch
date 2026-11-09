@@ -1,0 +1,26 @@
+<launch>
+  <!-- This is a separate, opt-in entry point; it never launches Gazebo. -->
+  <arg name="allow_send_goals" default="false" />
+  <arg name="frame_id" default="" />
+  <arg name="output_json" default="" />
+  <node pkg="lab11_formation" type="course_move_base.py" name="course_move_base_goals" output="screen">
+    <param name="allow_send_goals" value="$(arg allow_send_goals)" />
+    <param name="frame_id" value="$(arg frame_id)" />
+    <param name="output_json" value="$(arg output_json)" />
+    <param name="server_timeout" value="10.0" />
+    <param name="goal_timeout" value="90.0" />
+    <param name="total_timeout" value="120.0" />
+    <rosparam param="robots">[tb3_0, tb3_1, tb3_2]</rosparam>
+    <rosparam param="goals">
+      - x: 0.0
+        y: -0.5
+        yaw: 0.0
+      - x: 0.0
+        y: 0.0
+        yaw: 0.0
+      - x: 0.0
+        y: 0.5
+        yaw: 0.0
+    </rosparam>
+  </node>
+</launch>

@@ -1,0 +1,152 @@
+[
+  {
+    "name": "fonts-lyx_2.3.4.2-2_all.deb",
+    "url": "https://mirrors.tuna.tsinghua.edu.cn/ubuntu/pool/universe/l/lyx/fonts-lyx_2.3.4.2-2_all.deb",
+    "sha256": "1d4b05feb3d5771a6ef292b889a7b0ecfecec843d5450ad85db5b1a184f183eb",
+    "bytes": 153936
+  },
+  {
+    "name": "hicolor-icon-theme_0.17-2_all.deb",
+    "url": "https://mirrors.tuna.tsinghua.edu.cn/ubuntu/pool/main/h/hicolor-icon-theme/hicolor-icon-theme_0.17-2_all.deb",
+    "sha256": "9000eb98868252261978ff49501c0ace3124cb369c395e9f5015ddc556fe2ba6",
+    "bytes": 9976
+  },
+  {
+    "name": "javascript-common_11_all.deb",
+    "url": "https://mirrors.tuna.tsinghua.edu.cn/ubuntu/pool/main/j/javascript-common/javascript-common_11_all.deb",
+    "sha256": "83d6f46fb68dfb160de8a9f2a28349fa944d3e5c526888cbbf02ef5073933d3c",
+    "bytes": 6066
+  },
+  {
+    "name": "libimagequant0_2.12.2-1.1_amd64.deb",
+    "url": "https://mirrors.tuna.tsinghua.edu.cn/ubuntu/pool/main/libi/libimagequant/libimagequant0_2.12.2-1.1_amd64.deb",
+    "sha256": "7c4f79aee3e8ec4008684797413420144fd98efc0591c076ad7d6b0a87183273",
+    "bytes": 31400
+  },
+  {
+    "name": "libjs-jquery_3.3.1~dfsg-3ubuntu0.1_all.deb",
+    "url": "https://mirrors.tuna.tsinghua.edu.cn/ubuntu/pool/main/j/jquery/libjs-jquery_3.3.1~dfsg-3ubuntu0.1_all.deb",
+    "sha256": "6130f91c4dc37fee191bc555cabb529d9c07f457bfe29ebb70f19d4b06b7cfd5",
+    "bytes": 328900
+  },
+  {
+    "name": "libjs-jquery-ui_1.12.1+dfsg-5ubuntu0.20.04.1_all.deb",
+    "url": "https://mirrors.tuna.tsinghua.edu.cn/ubuntu/pool/universe/j/jqueryui/libjs-jquery-ui_1.12.1+dfsg-5ubuntu0.20.04.1_all.deb",
+    "sha256": "f30fb0a1450431653405b1d4ab5b60a4d696f4754c71a0e6df7e4dbf709b9c69",
+    "bytes": 231128
+  },
+  {
+    "name": "ttf-bitstream-vera_1.10-8_all.deb",
+    "url": "https://mirrors.tuna.tsinghua.edu.cn/ubuntu/pool/universe/t/ttf-bitstream-vera/ttf-bitstream-vera_1.10-8_all.deb",
+    "sha256": "3363bc937db394426bedc59a3f06815619c6d39fc989d51ef02a5cdbaab7cae9",
+    "bytes": 351754
+  },
+  {
+    "name": "python-matplotlib-data_3.1.2-1ubuntu4_all.deb",
+    "url": "https://mirrors.tuna.tsinghua.edu.cn/ubuntu/pool/universe/m/matplotlib/python-matplotlib-data_3.1.2-1ubuntu4_all.deb",
+    "sha256": "085659cb5dc23d0c039b5093b25b578377cfcf0f8cad800cb882fd622d2f62cd",
+    "bytes": 3788012
+  },
+  {
+    "name": "python3-cycler_0.10.0-3_all.deb",
+    "url": "https://mirrors.tuna.tsinghua.edu.cn/ubuntu/pool/universe/p/python-cycler/python3-cycler_0.10.0-3_all.deb",
+    "sha256": "7276a2fd78584abd7fd4430d085a76fe0b9aa381ec6d918608ae1389471d8cc7",
+    "bytes": 8132
+  },
+  {
+    "name": "python3-kiwisolver_1.0.1-3build1_amd64.deb",
+    "url": "https://mirrors.tuna.tsinghua.edu.cn/ubuntu/pool/universe/k/kiwisolver/python3-kiwisolver_1.0.1-3build1_amd64.deb",
+    "sha256": "6a0ab02fe57db357a226be4ea0a88e1557926fb0bb9e0a53b05ea475227f9350",
+    "bytes": 61340
+  },
+  {
+    "name": "python3-matplotlib_3.1.2-1ubuntu4_amd64.deb",
+    "url": "https://mirrors.tuna.tsinghua.edu.cn/ubuntu/pool/universe/m/matplotlib/python3-matplotlib_3.1.2-1ubuntu4_amd64.deb",
+    "sha256": "260d50795fa7b016bee7c95b2869fe0bc478cffc2f444af10545d6484135eacd",
+    "bytes": 4459072
+  },
+  {
+    "name": "python3-olefile_0.46-2_all.deb",
+    "url": "https://mirrors.tuna.tsinghua.edu.cn/ubuntu/pool/main/o/olefile/python3-olefile_0.46-2_all.deb",
+    "sha256": "cda227b6fbc15973ca31d10fc342550a7532910afb241bd9ff2352faf9360d66",
+    "bytes": 33700
+  },
+  {
+    "name": "python3-pil_7.0.0-4ubuntu0.9_amd64.deb",
+    "url": "https://mirrors.tuna.tsinghua.edu.cn/ubuntu/pool/main/p/pillow/python3-pil_7.0.0-4ubuntu0.9_amd64.deb",
+    "sha256": "a1976ff56dca432a0c4db9ab2ae6dbd22483ddb889a0124ceb20ff28402c3dbf",
+    "bytes": 366888
+  },
+  {
+    "name": "python3-pydot_1.4.1-3_all.deb",
+    "url": "https://mirrors.tuna.tsinghua.edu.cn/ubuntu/pool/universe/p/pydot/python3-pydot_1.4.1-3_all.deb",
+    "sha256": "61fc306836cf05646f88755e76bc4f881a9892c4663430b594fc9c3716faba7e",
+    "bytes": 21304
+  },
+  {
+    "name": "ros-noetic-qt-dotgraph_0.4.5-1focal.20250426.202029_amd64.deb",
+    "url": "https://mirrors.tuna.tsinghua.edu.cn/ros/ubuntu/pool/main/r/ros-noetic-qt-dotgraph/ros-noetic-qt-dotgraph_0.4.5-1focal.20250426.202029_amd64.deb",
+    "sha256": "440a5cdf63a4298f8bc9a2188e675ccfa29bddbde2db0cb5bada0dd9f2521800",
+    "bytes": 24228
+  },
+  {
+    "name": "tango-icon-theme_0.8.90-7_all.deb",
+    "url": "https://mirrors.tuna.tsinghua.edu.cn/ubuntu/pool/universe/t/tango-icon-theme/tango-icon-theme_0.8.90-7_all.deb",
+    "sha256": "175972e9de61c28809d3f3e1db8a1fe9f6e6b59b5c7fe61e068614e08bc07b0e",
+    "bytes": 1160912
+  },
+  {
+    "name": "ros-noetic-qt-gui_0.4.5-1focal.20250426.202313_amd64.deb",
+    "url": "https://mirrors.tuna.tsinghua.edu.cn/ros/ubuntu/pool/main/r/ros-noetic-qt-gui/ros-noetic-qt-gui_0.4.5-1focal.20250426.202313_amd64.deb",
+    "sha256": "6da205c2b525f3ea251451a338b3198eadff636e9cfa43b3e6f2c9b7f04f95af",
+    "bytes": 98168
+  },
+  {
+    "name": "ros-noetic-qt-gui-py-common_0.4.5-1focal.20250426.201640_amd64.deb",
+    "url": "https://mirrors.tuna.tsinghua.edu.cn/ros/ubuntu/pool/main/r/ros-noetic-qt-gui-py-common/ros-noetic-qt-gui-py-common_0.4.5-1focal.20250426.201640_amd64.deb",
+    "sha256": "e21651f549d979c54b510843edbb0499000aba11204a722211def19529b279dd",
+    "bytes": 15348
+  },
+  {
+    "name": "ros-noetic-qwt-dependency_1.1.1-2focal.20250426.010052_amd64.deb",
+    "url": "https://mirrors.tuna.tsinghua.edu.cn/ros/ubuntu/pool/main/r/ros-noetic-qwt-dependency/ros-noetic-qwt-dependency_1.1.1-2focal.20250426.010052_amd64.deb",
+    "sha256": "d45b0df6faa84aa40fc526c71e4a1291ce06c8c9d4b508b319e8a8cc193f6f86",
+    "bytes": 4612
+  },
+  {
+    "name": "ros-noetic-rqt-gui_0.5.5-1focal.20250519.232427_amd64.deb",
+    "url": "https://mirrors.tuna.tsinghua.edu.cn/ros/ubuntu/pool/main/r/ros-noetic-rqt-gui/ros-noetic-rqt-gui_0.5.5-1focal.20250519.232427_amd64.deb",
+    "sha256": "664adc99983b055c88a2d38e8932a37716ff3737be4157af123c89bd6c970bcb",
+    "bytes": 94740
+  },
+  {
+    "name": "ros-noetic-rqt-gui-py_0.5.5-1focal.20250519.233238_amd64.deb",
+    "url": "https://mirrors.tuna.tsinghua.edu.cn/ros/ubuntu/pool/main/r/ros-noetic-rqt-gui-py/ros-noetic-rqt-gui-py_0.5.5-1focal.20250519.233238_amd64.deb",
+    "sha256": "7619d18095d48af0d8d5af3e9c30271422aff3f03c2f790cb7cff23e4857ebe3",
+    "bytes": 10008
+  },
+  {
+    "name": "ros-noetic-rqt-graph_0.4.16-1focal.20250519.235907_amd64.deb",
+    "url": "https://mirrors.tuna.tsinghua.edu.cn/ros/ubuntu/pool/main/r/ros-noetic-rqt-graph/ros-noetic-rqt-graph_0.4.16-1focal.20250519.235907_amd64.deb",
+    "sha256": "cb41be44734cd6f6c3dc02c2111840f07db5115c276e4423b961494c0688aa10",
+    "bytes": 32984
+  },
+  {
+    "name": "ros-noetic-rqt-py-common_0.5.5-1focal.20250520.000903_amd64.deb",
+    "url": "https://mirrors.tuna.tsinghua.edu.cn/ros/ubuntu/pool/main/r/ros-noetic-rqt-py-common/ros-noetic-rqt-py-common_0.5.5-1focal.20250520.000903_amd64.deb",
+    "sha256": "e4778ec56ca04c45987e743f586b988c7468c45cfbe41127edb86c952b0de435",
+    "bytes": 49304
+  },
+  {
+    "name": "ros-noetic-rqt-plot_0.4.16-1focal.20250520.001122_amd64.deb",
+    "url": "https://mirrors.tuna.tsinghua.edu.cn/ros/ubuntu/pool/main/r/ros-noetic-rqt-plot/ros-noetic-rqt-plot_0.4.16-1focal.20250520.001122_amd64.deb",
+    "sha256": "8ec520de6225f7993687cef6c377cd7ce4f055139e9dd2e422f42f50f41977b0",
+    "bytes": 40436
+  },
+  {
+    "name": "ros-noetic-turtlesim_0.10.3-1focal.20250519.230656_amd64.deb",
+    "url": "https://mirrors.tuna.tsinghua.edu.cn/ros/ubuntu/pool/main/r/ros-noetic-turtlesim/ros-noetic-turtlesim_0.10.3-1focal.20250519.230656_amd64.deb",
+    "sha256": "2942b456370fb431ce0704fb01e05f951d2ff7059654ebc5fa9cd770380e6199",
+    "bytes": 237056
+  }
+]
